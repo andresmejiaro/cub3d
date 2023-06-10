@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 15:47:40 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/03/18 16:27:44 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/10 20:41:36 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 
-char	*ft_strjoin(char *s1, char const *s2);
+char	*ft_strjoin_free(char *s1, char const *s2);
 
 char	*ft_strchr(const char *s, int c);
 

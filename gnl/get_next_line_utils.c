@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 15:48:48 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/05/05 15:36:40 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/10 20:41:43 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	return (dest_length + src_length);
 }
 
-char	*ft_strjoin(char *s1, char const *s2)
+char	*ft_strjoin_free(char *s1, char const *s2)
 {
 	char	*result;
 	size_t	s1_size;
