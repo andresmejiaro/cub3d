@@ -25,21 +25,9 @@
 # include <mlx.h>
 # include <fcntl.h>
 
-typedef struct s_global{
-	void	*mlx;
-	void	*win;
-	char	**map;
-	int		floor_color[3];
-	int		ceiling_color[3];
-	char	*NO_texture;
-	char	*SO_texture;
-	char	*WE_texture;
-	char	*EA_texture;
-	float	char_pos[2];
-	float	char_facing[2];
-}				t_global;
 
 typedef struct s_image {
+	char	*file;
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -48,15 +36,44 @@ typedef struct s_image {
 	char	*pixels;
 	int		size[2];
 	int		pos[2];
+	int		width;
+	int		height;
 }				t_image;
 
+typedef struct s_global{
+	void	*mlx;
+	void	*win;
+	char	**map;
+	int		floor_color[3];
+	int		ceiling_color[3];
+	t_image	NO_texture;
+	t_image	SO_texture;
+	t_image	WE_texture;
+	t_image	EA_texture;
+  float	char_pos[2];
+	float	char_facing[2]
+}				t_global;
+
+typedef struct s_text_param {
+	char	*file;
+	int		*position;
+	int		column;
+	int		size;	
+}				t_text_param;
+
+typedef struct s_color {
+	int	t;
+	int	r;
+	int	g;
+	int	b;
+	int	trgb;
+} t_color;
 
 /*math*/
 float	dot_prod(float v1[2], float v2[2]);
 float	dist_vec(float v1[2], float v2[2]);
 float	norm_vec(float v1[2], float v2[2]);
 float	*inter_lines(float orig1[2], float dir1[2], float orig2[2], float dir2[2]);
-
 
 /* parser */
 int		check_args(int argc, char *file);
@@ -66,7 +83,7 @@ int		is_playable(int fd);
 int		check_borders(char **matrix);
 
 /* start map */
-int		start_map(t_global *vars);
+int		start_map(t_global *vars, char *argv);
 
 /* key hooks */
 int		initialize_key_hooks(t_global *vars);
@@ -81,5 +98,8 @@ void	background(t_global *vars);
 
 /* minimap */
 int		put_minimap(t_global *vars);
+
+/* render walls */
+void    render_wall_col(t_global *vars, int column, int size, int *pos);
 
 #endif

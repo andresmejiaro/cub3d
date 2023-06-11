@@ -6,7 +6,7 @@
 /*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 16:40:53 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/11 20:50:45 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/12 00:26:25 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,19 @@
 // 	return (1);
 // }
 
-int	start_map(t_global *vars)
+int	start_map(t_global *vars, char	*argv)
 {
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, SIZE_X, SIZE_Y, "Cub3D");
+	get_map(vars, argv);
 	background(vars);
-	// if (!put_minimap(vars))
-	// 	return (0);
+	if (!put_minimap(vars))
+		return (0);
 	if (!initialize_key_hooks(vars))
 		return (0);
-	// if (!put_walls(vars))
-	// 	return (0);
+
+	// render_wall_col(vars, i++, j, k);
+
 	mlx_loop(vars->mlx);
 	return (1);
 }
