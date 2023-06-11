@@ -6,7 +6,7 @@
 /*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:59:17 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/11 20:46:41 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/11 22:29:07 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ typedef struct s_image {
 
 
 /*math*/
-float dot_prod(float v1[2], float v2[2]);
-float dist_vec(float v1[2], float v2[2]);
-float norm_vec(float v1[2], float v2[2]);
-float *inter_lines(float orig1[2], float dir1[2], float orig2[2], float dir2[2]);
+float	dot_prod(float v1[2], float v2[2]);
+float	dist_vec(float v1[2], float v2[2]);
+float	norm_vec(float v1[2], float v2[2]);
+float	*inter_lines(float orig1[2], float dir1[2], float orig2[2], float dir2[2]);
 
 
 /* parser */
