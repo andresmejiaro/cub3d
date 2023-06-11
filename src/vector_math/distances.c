@@ -6,7 +6,7 @@
 /*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 18:10:27 by amejia            #+#    #+#             */
-/*   Updated: 2023/06/11 22:48:33 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/12 00:23:28 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,27 @@ float *inter_lines(float orig1[2], float dir1[2], float orig2[2], float dir2[2])
 {
 	float *segment;
 	float slope[2];
-
+	
 	slope[0]=dir1[1]/dir1[0];
 	slope[1]=dir2[1]/dir2[0];
-	if (fabs(slope[0] - slope[1]) < 0.1)
+	if ((dir1[0] == 0 && dir2[0] == 0) || fabs(slope[0] - slope[1]) < 0.1)
 		return (NULL);
-
 	segment = ft_calloc(2 , sizeof(float));
-	segment[1] = ((-slope[0] / slope[1]) * orig2[1] + slope[1] * orig2[0] + orig1[1]
-		- slope[0] * orig1[0]) / (1 - slope[0] / slope[1]);
-	segment[0] = (segment[1] - orig1[1])/slope[0] + orig1[0];
+	if (dir1[0] == 0)
+	{
+		segment[0] = orig1[0];
+		segment[1] = slope[1]*(segment[0] - orig2[0])+ orig2[1];
+	}
+	else if (dir2[0] == 0)
+	{
+		segment[0] = orig2[0];
+		segment[1] = slope[0]*(segment[0] - orig1[0])+ orig1[1];
+	}
+	else
+	{
+		segment[1] = ((-slope[0] / slope[1]) * orig2[1] + slope[1] * orig2[0] + orig1[1]
+			- slope[0] * orig1[0]) / (1 - slope[0] / slope[1]);
+		segment[0] = (segment[1] - orig1[1])/slope[0] + orig1[0];
+	}
 	return (segment);	
 }
