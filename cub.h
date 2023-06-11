@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:59:17 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/11 20:46:41 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/11 21:20:04 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ typedef struct s_global{
 	t_image	SO_texture;
 	t_image	WE_texture;
 	t_image	EA_texture;
-  float	char_pos[2];
-	float	char_facing[2]
+  	float	char_pos[2];
+	float	char_facing[2];
 }				t_global;
 
 typedef struct s_text_param {
