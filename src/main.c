@@ -6,7 +6,7 @@
 /*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 20:55:22 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/11 20:46:41 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/11 20:47:47 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ int main(int argc, char *argv[])
 		return (1);
 	if (!check_map(argv[1]))
 		return (2);
-	get_map(&vars, argv[1]);
-	if (!start_map(&vars))
+	if (!start_map(&vars, argv[1]))
 		return (3);
 	return (0);
 }
