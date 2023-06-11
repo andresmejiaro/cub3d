@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:59:17 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/11 17:16:05 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/11 20:46:41 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct s_global{
 	char	*SO_texture;
 	char	*WE_texture;
 	char	*EA_texture;
+	float	char_pos[2];
+	float	char_facing[2];
 }				t_global;
 
 typedef struct s_image {
@@ -47,6 +49,14 @@ typedef struct s_image {
 	int		size[2];
 	int		pos[2];
 }				t_image;
+
+
+/*math*/
+float dot_prod(float v1[2], float v2[2]);
+float dist_vec(float v1[2], float v2[2]);
+float norm_vec(float v1[2], float v2[2]);
+float *inter_lines(float orig1[2], float dir1[2], float orig2[2], float dir2[2]);
+
 
 /* parser */
 int		check_args(int argc, char *file);
