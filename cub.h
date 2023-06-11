@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:59:17 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/11 20:48:14 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/11 20:46:41 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <math.h>
 # include <mlx.h>
 # include <fcntl.h>
+
 
 typedef struct s_image {
 	char	*file;
@@ -49,6 +50,8 @@ typedef struct s_global{
 	t_image	SO_texture;
 	t_image	WE_texture;
 	t_image	EA_texture;
+  float	char_pos[2];
+	float	char_facing[2]
 }				t_global;
 
 typedef struct s_text_param {
@@ -65,6 +68,12 @@ typedef struct s_color {
 	int	b;
 	int	trgb;
 } t_color;
+
+/*math*/
+float dot_prod(float v1[2], float v2[2]);
+float dist_vec(float v1[2], float v2[2]);
+float norm_vec(float v1[2], float v2[2]);
+float *inter_lines(float orig1[2], float dir1[2], float orig2[2], float dir2[2]);
 
 /* parser */
 int		check_args(int argc, char *file);
