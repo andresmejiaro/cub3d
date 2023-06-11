@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:59:17 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/11 00:24:39 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/11 17:16:05 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,13 @@
 typedef struct s_global{
 	void	*mlx;
 	void	*win;
+	char	**map;
 	int		floor_color[3];
 	int		ceiling_color[3];
+	char	*NO_texture;
+	char	*SO_texture;
+	char	*WE_texture;
+	char	*EA_texture;
 }				t_global;
 
 typedef struct s_image {
@@ -45,6 +50,13 @@ typedef struct s_image {
 
 /* parser */
 int		check_args(int argc, char *file);
+int		check_map(char *file);
+void	get_map(t_global *vars, char *file);
+int		is_playable(int fd);
+int		check_borders(char **matrix);
+
+/* start map */
+int		start_map(t_global *vars);
 
 /* key hooks */
 int		initialize_key_hooks(t_global *vars);
@@ -52,10 +64,12 @@ int		initialize_key_hooks(t_global *vars);
 /* mlx utils */
 int		close_window(t_global *vars);
 void	my_mlx_pixel_put(t_image *data, int x, int y, int color);
-
-void	background(t_image img, int floor_col, int ceiling_col);
 int		create_trgb(int t, int r, int g, int b);
 
-int		put_tile(t_global *vars, int* pos, int* size);
+/* background */
+void	background(t_global *vars);
+
+/* minimap */
+int		put_minimap(t_global *vars);
 
 #endif

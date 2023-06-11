@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_borders.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/10 20:55:22 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/11 16:49:49 by mpizzolo         ###   ########.fr       */
+/*   Created: 2023/06/11 16:34:26 by mpizzolo          #+#    #+#             */
+/*   Updated: 2023/06/11 16:38:29 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../../cub.h"
 
-int main(int argc, char *argv[])
+
+int	check_borders(char **matrix)
 {
-	t_global	vars;	
+	int	y;
+	int	x;
+
+	y = -1;
+	while (matrix[++y])
+	{
+		x = -1;
+		while (matrix[y][++x])
+		{
 		
-	if (!check_args(argc, argv[1]))
-		return (1);
-	if (!check_map(argv[1]))
-		return (2);
-	get_map(&vars, argv[1]);
-	if (!start_map(&vars))
-		return (3);
-	return (0);
+		}
+	}
 }

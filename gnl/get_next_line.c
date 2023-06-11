@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 15:48:48 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/10 20:15:51 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/11 13:01:46 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_read_save(int fd, char *save)
 				return (free(buffer), NULL);
 			}
 			buffer[bytes_read] = '\0';
-			save = ft_strjoin(save, buffer);
+			save = ft_strjoin_free(save, buffer);
 		}
 	}
 	return (free(buffer), save);

@@ -4,7 +4,10 @@ NAME_DEBUG = cub_debug
 SRCS_DIR = ./src
 GNL_DIR = ./gnl
 
-SRCS = $(SRCS_DIR)/main.c $(SRCS_DIR)/key_hooks.c $(SRCS_DIR)/mlx_utils.c $(SRCS_DIR)/background.c  $(SRCS_DIR)/parser/check_args.c
+SRCS = $(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c \
+		$(SRCS_DIR)/parser/check_args.c $(SRCS_DIR)/parser/check_map.c $(SRCS_DIR)/parser/is_playable.c $(SRCS_DIR)/parser/get_map.c \
+		$(SRCS_DIR)/main.c $(SRCS_DIR)/game/start_map.c $(SRCS_DIR)/game/key_hooks.c $(SRCS_DIR)/game/mlx_utils.c $(SRCS_DIR)/game/background.c \
+		$(SRCS_DIR)/game/minimap.c
 
 OBJS = ${SRCS:.c=.o}
 
