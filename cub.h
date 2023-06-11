@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:59:17 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/11 17:16:05 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/11 20:48:14 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,8 @@
 # include <mlx.h>
 # include <fcntl.h>
 
-typedef struct s_global{
-	void	*mlx;
-	void	*win;
-	char	**map;
-	int		floor_color[3];
-	int		ceiling_color[3];
-	char	*NO_texture;
-	char	*SO_texture;
-	char	*WE_texture;
-	char	*EA_texture;
-}				t_global;
-
 typedef struct s_image {
+	char	*file;
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -46,7 +35,36 @@ typedef struct s_image {
 	char	*pixels;
 	int		size[2];
 	int		pos[2];
+	int		width;
+	int		height;
 }				t_image;
+
+typedef struct s_global{
+	void	*mlx;
+	void	*win;
+	char	**map;
+	int		floor_color[3];
+	int		ceiling_color[3];
+	t_image	NO_texture;
+	t_image	SO_texture;
+	t_image	WE_texture;
+	t_image	EA_texture;
+}				t_global;
+
+typedef struct s_text_param {
+	char	*file;
+	int		*position;
+	int		column;
+	int		size;	
+}				t_text_param;
+
+typedef struct s_color {
+	int	t;
+	int	r;
+	int	g;
+	int	b;
+	int	trgb;
+} t_color;
 
 /* parser */
 int		check_args(int argc, char *file);
@@ -56,7 +74,7 @@ int		is_playable(int fd);
 int		check_borders(char **matrix);
 
 /* start map */
-int		start_map(t_global *vars);
+int		start_map(t_global *vars, char *argv);
 
 /* key hooks */
 int		initialize_key_hooks(t_global *vars);
@@ -71,5 +89,8 @@ void	background(t_global *vars);
 
 /* minimap */
 int		put_minimap(t_global *vars);
+
+/* render walls */
+void    render_wall_col(t_global *vars, int column, int size, int *pos);
 
 #endif

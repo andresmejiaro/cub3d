@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 12:49:24 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/11 14:19:53 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/11 20:53:02 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,21 @@ void	get_textures(t_global *vars, int fd)
 	char	*line;
 	
 	line = get_next_line(fd);
-	vars->NO_texture = ft_strtrim((line + 3), "\n");
+	vars->NO_texture.file = ft_strtrim((line + 3), "\n");
+	vars->NO_texture.img = mlx_xpm_file_to_image(vars->mlx, vars->NO_texture.file, &vars->NO_texture.width, &vars->NO_texture.height);
+	vars->NO_texture.addr = mlx_get_data_addr(vars->NO_texture.img, &vars->NO_texture.bits_per_pixel, &vars->NO_texture.line_length, &vars->NO_texture.endian);
 	line = get_next_line(fd);
-	vars->SO_texture = ft_strtrim((line + 3), "\n");
+	// vars->SO_texture.file = ft_strtrim((line + 3), "\n");
+	// vars->SO_texture.img = mlx_xpm_file_to_image(vars->mlx, vars->SO_texture.file, &vars->SO_texture.width, &vars->SO_texture.height);
+    // vars->SO_texture.addr = mlx_get_data_addr(vars->SO_texture.img, &vars->SO_texture.bits_per_pixel, &vars->SO_texture.line_length, &vars->SO_texture.endian);
 	line = get_next_line(fd);
-	vars->WE_texture = ft_strtrim((line + 3), "\n");
+	// vars->WE_texture.file = ft_strtrim((line + 3), "\n");
+	// vars->WE_texture.img = mlx_xpm_file_to_image(vars->mlx, vars->WE_texture.file, &vars->WE_texture.width, &vars->WE_texture.height);
+    // vars->WE_texture.addr = mlx_get_data_addr(vars->WE_texture.img, &vars->WE_texture.bits_per_pixel, &vars->WE_texture.line_length, &vars->WE_texture.endian);
 	line = get_next_line(fd);
-	vars->EA_texture = ft_strtrim((line + 3), "\n");
+	// vars->EA_texture.file = ft_strtrim((line + 3), "\n");
+	// vars->EA_texture.img = mlx_xpm_file_to_image(vars->mlx, vars->EA_texture.file, &vars->EA_texture.width, &vars->EA_texture.height);
+    // vars->EA_texture.addr = mlx_get_data_addr(vars->EA_texture.img, &vars->EA_texture.bits_per_pixel, &vars->EA_texture.line_length, &vars->EA_texture.endian);
 }
 
 void	get_colors(t_global *vars, int fd)
