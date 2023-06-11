@@ -6,7 +6,7 @@
 /*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 18:10:27 by amejia            #+#    #+#             */
-/*   Updated: 2023/06/12 00:23:28 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/12 00:36:51 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void norm_vect(float *v1)
 	v1[1] = v1[1]/size;
 }
 
-float *nearest_point(float orig1[2], float dir1[2], float orig2[2], float dir2[2])
+// This function mallocs its result
+float *nearest_point(float orig1[2], float orig2[2], float dir2[2])
 {
 	float *segment;
 	float proy;
@@ -48,8 +49,6 @@ float *nearest_point(float orig1[2], float dir1[2], float orig2[2], float dir2[2
 	segment[0] = orig2[0] - orig1[0]; 
 	segment[1] = orig2[1] - orig1[1]; 
 	norm_vect(dir2); 
-	if (fabs(dir1[1]/dir1[0] - dir2[1]/dir2[0]) < 0.1)
-		return (NULL);
 	proy = dot_prod(dir2, segment);
 	segment[0] = proy * dir2[0];
 	segment[1] = proy * dir2[1];
@@ -58,7 +57,7 @@ float *nearest_point(float orig1[2], float dir1[2], float orig2[2], float dir2[2
 	return (segment);	
 }
 
-
+// This function mallocs its result
 float *inter_lines(float orig1[2], float dir1[2], float orig2[2], float dir2[2])
 {
 	float *segment;
@@ -87,3 +86,5 @@ float *inter_lines(float orig1[2], float dir1[2], float orig2[2], float dir2[2])
 	}
 	return (segment);	
 }
+
+

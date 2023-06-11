@@ -6,7 +6,7 @@
 /*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:59:17 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/11 22:29:07 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/12 00:40:36 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ typedef struct s_global{
 	t_image	SO_texture;
 	t_image	WE_texture;
 	t_image	EA_texture;
-  float	char_pos[2];
-	float	char_facing[2]
+	float	char_pos[2];
+	float	char_facing[2];
 }				t_global;
 
 typedef struct s_text_param {
@@ -74,6 +74,8 @@ float	dot_prod(float v1[2], float v2[2]);
 float	dist_vec(float v1[2], float v2[2]);
 float	norm_vec(float v1[2], float v2[2]);
 float	*inter_lines(float orig1[2], float dir1[2], float orig2[2], float dir2[2]);
+float	*nearest_point(float orig1[2], float orig2[2], float dir2[2]);
+void	*rotate_vector(float *vec, float rad);
 
 /* parser */
 int		check_args(int argc, char *file);
