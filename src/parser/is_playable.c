@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 13:57:38 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/11 16:40:10 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/11 22:44:01 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,15 @@ char	**start_matrix(int fd)
 	return (matrix);
 }
 
-int	is_playable(int fd)
+int	is_playable(t_global *vars, int fd)
 {
 	char	**matrix;
 	int		*p_pos;
 
 	matrix = start_matrix(fd);
 	p_pos = where_is_p(matrix);
+	vars->char_pos[0] = p_pos[0];
+	vars->char_pos[1] = p_pos[1];
 	explore_board(p_pos, matrix);
 	free(p_pos);
 	// check_borders(matrix);

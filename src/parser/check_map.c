@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 20:55:18 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/11 14:15:04 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/11 22:30:02 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	one_player(int fd)
 	return (1);
 }
 
-int	check_map(char *file)
+int	check_map(t_global *vars, char *file)
 {
 	int		fd;
 
@@ -82,7 +82,7 @@ int	check_map(char *file)
 		return (0);
 	if (!one_player(fd))
 		return (0);
-	if (!is_playable(fd))
+	if (!is_playable(vars, fd))
 		return (0);
 	close(fd);
 	return (1);
