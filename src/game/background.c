@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   background.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:35:26 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/11 17:46:57 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/11 20:51:19 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../../cub.h"
 
 void	background(t_global *vars)
 {

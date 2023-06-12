@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:08:37 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/01/15 18:58:21 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/12 14:36:13 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	whitespaces(char *str, int *ptr_i)
 	i = 0;
 	j = 0;
 	count = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+	while (str[i] && ((str[i] >= 9 && str[i] <= 13) || str[i] == 32))
 		i++;
-	while ((str[i] == 43 || str[i] == 45))
+	while (str[i] && (str[i] == 43 || str[i] == 45))
 	{
 		if (str[i] == 45)
 			count *= -1;

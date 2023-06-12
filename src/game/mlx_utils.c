@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:10:27 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/11 17:32:09 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/11 20:51:10 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../../cub.h"
 
 void	my_mlx_pixel_put(t_image *data, int x, int y, int color)
 {
