@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 16:40:53 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 22:13:11 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/12 23:00:29 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,5 @@ int	start_map(t_global *vars, char	*argv)
 
 	// render_wall(vars, cor1, cor2, &vars->NO_texture);
 
-	mlx_loop(vars->mlx);
 	return (1);
 }
