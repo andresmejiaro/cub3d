@@ -6,35 +6,38 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 20:58:42 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/11 21:02:37 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/12 15:03:28 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
 
-void	move_left(t_global *vars)
+void move_player(int move_to, t_global *vars)
 {
-	// if (matrix[(milei->y_pos / 50)][(milei->x_pos / 50) - 1] == 1)
-	// 	return (0);
-	// put_street(*vars, milei->x_pos, milei->y_pos);
-	// matrix[(milei->y_pos / 50)][(milei->x_pos / 50) - 1] = 2;
-	// milei->x_pos -= 50;
-	// x = milei->x_pos;
-	// y = milei->y_pos;
-	put_minimap(vars);
-}
+	int		tmp_x;
+	int		tmp_y;
+	char	facing;
+	char	next_position;
 
-void	move_player(int move_to, t_global *vars)
-{
-	int	moved;
-
-	moved = 0;
+	tmp_x = (int)vars->char_pos[1];
+	tmp_y = (int)vars->char_pos[0];
 	if (move_to == 1)
-		move_left(vars);
-	// else if (move_to == 2)
-	// 	moved = move_right(milei, &g_vaars, matrix, map);
-	// else if (move_to == 3)
-	// 	moved = move_top(milei, &g_vaars, matrix, map);
-	// else if (move_to == 4)
-	// 	moved = move_bottom(milei, &g_vaars, matrix, map);
+		tmp_x -= 1;
+	else if (move_to == 2)	
+		tmp_x += 1;
+	else if (move_to == 3)	
+		tmp_y += 1;
+	else if (move_to == 4)	
+		tmp_y -= 1;
+	if (tmp_x < 0 || tmp_y < 0 || !vars->map[tmp_y][tmp_x])
+		return ;
+	next_position = vars->map[tmp_y][tmp_x];
+	if (next_position == '1')
+		return ;
+	facing = vars->map[(int)vars->char_pos[0]][(int)vars->char_pos[1]];
+	vars->map[(int)vars->char_pos[0]][(int)vars->char_pos[1]] = '0';
+	vars->map[tmp_y][tmp_x] = facing;
+	vars->char_pos[1] = tmp_x;
+	vars->char_pos[0] = tmp_y;
+	put_minimap(vars);
 }

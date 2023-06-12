@@ -25,6 +25,10 @@ int	key_hook(int keycode, t_global *vars)
 		move_player(2, vars);
 	else if (keycode == 0)
 		move_player(1, vars);
+	else if (keycode == 124)
+		move_view(1, vars);
+	else if (keycode == 123)
+		move_view(2, vars);
 	return (0);
 }
 

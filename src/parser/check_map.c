@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 20:55:18 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/11 14:15:04 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/12 14:42:09 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ int	check_map(char *file)
 	if (!are_colors(fd))
 		return (0);
 	if (!one_player(fd))
-		return (0);
-	if (!is_playable(fd))
 		return (0);
 	close(fd);
 	return (1);

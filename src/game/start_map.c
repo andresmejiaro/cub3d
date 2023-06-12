@@ -31,6 +31,7 @@ int	start_map(t_global *vars, char	*argv)
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, SIZE_X, SIZE_Y, "Cub3D");
 	get_map(vars, argv);
+	get_positions(vars);
 	background(vars);
 	if (!put_minimap(vars))
 		return (0);

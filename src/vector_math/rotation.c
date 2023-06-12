@@ -13,7 +13,7 @@
 #include "../../cub.h"
 
 // This function overwrites vec
-void *rotate_vector(float *vec, float rad)
+void rotate_vector(float *vec, float rad)
 {
 	float temp[2];
 
