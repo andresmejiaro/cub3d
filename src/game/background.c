@@ -6,7 +6,7 @@
 /*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:35:26 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/11 20:51:19 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/12 18:52:21 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	background(t_global *vars)
 	int		n;
 	int		c_color;
 	int		f_color;
-
 
 	img.img = mlx_new_image(vars->mlx, SIZE_X, SIZE_Y);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
