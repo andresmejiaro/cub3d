@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_player.c                                      :+:      :+:    :+:   */
+/*   moves_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 20:58:42 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 15:03:28 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/12 17:45:07 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
+
+void move_view(int view_to, t_global *vars)
+{
+
+	if (view_to == 2)
+		rotate_vector(vars->char_facing, PI/8);
+	else if (view_to == 1)	
+		rotate_vector(vars->char_facing, -PI/8);
+	put_minimap(vars);
+}
 
 void move_player(int move_to, t_global *vars)
 {

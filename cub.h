@@ -56,6 +56,7 @@ typedef struct s_global{
 	t_image	EA_texture;
 	float	char_pos[2];
 	float	char_facing[2];
+	int long	mouse_pos;
 }				t_global;
 
 typedef struct s_text_param {
