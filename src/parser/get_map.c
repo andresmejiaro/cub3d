@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 12:49:24 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/11 20:53:02 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/12 14:40:54 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ void	get_textures(t_global *vars, int fd)
 	char	*line;
 	
 	line = get_next_line(fd);
+	if (line[0] == '\n')
+		line = get_next_line(fd);
 	vars->NO_texture.file = ft_strtrim((line + 3), "\n");
-	vars->NO_texture.img = mlx_xpm_file_to_image(vars->mlx, vars->NO_texture.file, &vars->NO_texture.width, &vars->NO_texture.height);
-	vars->NO_texture.addr = mlx_get_data_addr(vars->NO_texture.img, &vars->NO_texture.bits_per_pixel, &vars->NO_texture.line_length, &vars->NO_texture.endian);
+	// vars->NO_texture.img = mlx_xpm_file_to_image(vars->mlx, vars->NO_texture.file, &vars->NO_texture.width, &vars->NO_texture.height);
+	// vars->NO_texture.addr = mlx_get_data_addr(vars->NO_texture.img, &vars->NO_texture.bits_per_pixel, &vars->NO_texture.line_length, &vars->NO_texture.endian);
 	line = get_next_line(fd);
 	// vars->SO_texture.file = ft_strtrim((line + 3), "\n");
 	// vars->SO_texture.img = mlx_xpm_file_to_image(vars->mlx, vars->SO_texture.file, &vars->SO_texture.width, &vars->SO_texture.height);

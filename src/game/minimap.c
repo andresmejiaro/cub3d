@@ -6,11 +6,44 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 17:05:21 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/11 20:56:02 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/12 15:07:02 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub.h"
+
+void draw_circle(t_image *m_map, int centerX, int centerY, int radius, float scale, int color)
+{
+	int scaledCenterX = centerX * scale;
+    int scaledCenterY = centerY * scale;
+	int x = radius;
+	int y = 0;
+	int radiusError = 1 - x;
+
+	while (x >= y)
+	{
+		my_mlx_pixel_put(m_map, scaledCenterX + x, scaledCenterY + y, color);
+		my_mlx_pixel_put(m_map, scaledCenterX + y, scaledCenterY + x, color);
+		my_mlx_pixel_put(m_map, scaledCenterX - y, scaledCenterY + x, color);
+		my_mlx_pixel_put(m_map, scaledCenterX - x, scaledCenterY + y, color);
+		my_mlx_pixel_put(m_map, scaledCenterX - x, scaledCenterY - y, color);
+		my_mlx_pixel_put(m_map, scaledCenterX - y, scaledCenterY - x, color);
+		my_mlx_pixel_put(m_map, scaledCenterX + y, scaledCenterY - x, color);
+		my_mlx_pixel_put(m_map, scaledCenterX + x, scaledCenterY - y, color);
+
+		y++;
+
+		if (radiusError < 0)
+		{
+			radiusError += 2 * y + 1;
+		}
+		else
+		{
+			x--;
+			radiusError += 2 * (y - x + 1);
+		}
+	}
+}
 
 void calculate_map_dimensions(t_global *vars, int *map_width, int *map_height)
 {
@@ -43,12 +76,22 @@ void draw_scaled_pixel(t_image *m_map, int x, int y, float scale, int color)
 	}
 }
 
+void draw_line(t_image *m_map, int x, int y, float scale, int color)
+{
+	int dx = 0;
+	while (dx < scale) // Loop over scaled x-coordinates
+	{
+		my_mlx_pixel_put(m_map, x * scale + dx, y * scale, color);
+		dx++;
+	}
+}
+
 
 void scale_minimap(t_global *vars, t_image *m_map, int map_width)
 {
 	int colors[2];
-	colors[0] = create_trgb(100, 255, 255, 255);
-	colors[1] = create_trgb(100, 0, 0, 0);
+	colors[0] = create_trgb(0, 255, 255, 255);
+	colors[1] = create_trgb(0, 0, 0, 0);
 
 	float scale = 250.0 / map_width; // Calculate the scale factor based on the map's width
 
@@ -59,10 +102,14 @@ void scale_minimap(t_global *vars, t_image *m_map, int map_width)
 		while (vars->map[y][++x])
 		{
 			if (vars->map[y][x] != '0' && vars->map[y][x] != '1' && vars->map[y][x] != '\n')
-				draw_scaled_pixel(m_map, x, y, scale, create_trgb(0, 220, 100, 255));
-			else if (vars->map[y][x] == '0')
+			{	
 				draw_scaled_pixel(m_map, x, y, scale, colors[0]);
-			else
+				draw_line(m_map, vars->char_facing[1], y, scale, 0x0000FF);
+				draw_circle(m_map, x, y, 5, scale, 0xFF0000);
+			}
+			if (vars->map[y][x] == '0')
+				draw_scaled_pixel(m_map, x, y, scale, colors[0]);
+			else if (vars->map[y][x] == '1')
 				draw_scaled_pixel(m_map, x, y, scale, colors[1]);
 		}
 	}

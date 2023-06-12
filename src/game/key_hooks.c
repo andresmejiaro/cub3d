@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:11:21 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/11 22:27:06 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/12 14:43:36 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ int	key_hook(int keycode, t_global *vars)
 		move_player(2, vars);
 	else if (keycode == 0)
 		move_player(1, vars);
+	else if (keycode == 124)
+		move_view(1, vars);
+	else if (keycode == 123)
+		move_view(2, vars);
 	return (0);
 }
 

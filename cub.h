@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:59:17 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/11 22:37:09 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/12 14:42:23 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,13 @@ float *inter_lines(float orig1[2], float dir1[2], float orig2[2], float dir2[2])
 
 /* parser */
 int		check_args(int argc, char *file);
-int		check_map(t_global *vars, char *file);
+int		check_map(char *file);
 void	get_map(t_global *vars, char *file);
-int		is_playable(t_global *vars, int fd);
 int		check_borders(char **matrix);
 
 /* start map */
 int		start_map(t_global *vars, char *argv);
+void	get_positions(t_global *vars);
 
 /* key hooks */
 int		initialize_key_hooks(t_global *vars);
@@ -101,6 +101,9 @@ int		put_minimap(t_global *vars);
 
 /* move player */
 void	move_player(int move_to, t_global *vars);
+
+/* move view */
+void move_view(int view_to, t_global *vars);
 
 /* render walls */
 void    render_wall_col(t_global *vars, int column, int size, int *pos);
