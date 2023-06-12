@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   key_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:11:21 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 00:26:21 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/12 19:25:47 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub.h"
+
+
+int	mouse_move(int keycode, t_global *vars)
+{
+	if (vars->mouse_pos - keycode > 100)
+	{
+		vars->mouse_pos = keycode;
+		printf("keycode: %i\n", keycode);
+	}
+	return 0;	
+}
 
 int	key_hook(int keycode, t_global *vars)
 {
@@ -34,7 +45,9 @@ int	key_hook(int keycode, t_global *vars)
 
 int	initialize_key_hooks(t_global *vars)
 {
+	vars->mouse_pos = 1;
 	mlx_key_hook(vars->win, key_hook, vars);
+	// mlx_hook(vars->win, 6, 0, mouse_move, vars); 
 	mlx_hook(vars->win, 17, 0, close_window, vars);
 	return (1);
 }
