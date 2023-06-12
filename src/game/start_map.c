@@ -6,7 +6,7 @@
 /*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 16:40:53 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 00:26:25 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/12 22:13:11 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ int	start_map(t_global *vars, char	*argv)
 		return (0);
 	if (!initialize_key_hooks(vars))
 		return (0);
+	float cor1[2] ={1,1};
+	float cor2[2] = {2, 1};
 
-	// render_wall_col(vars, i++, j, k);
+	// render_wall(vars, cor1, cor2, &vars->NO_texture);
 
 	mlx_loop(vars->mlx);
 	return (1);

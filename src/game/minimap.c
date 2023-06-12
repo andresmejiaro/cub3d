@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 17:05:21 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 17:18:21 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/12 21:35:25 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ void draw_line(t_global *vars, t_image *m_map, float x, float y, float scale, in
 {
 	float dx = 0;
 	norm_vect(vars->char_facing);
-	float	to_x = vars->char_facing[1];
-	float	to_y = vars->char_facing[0];
+	float	to_x = vars->char_facing.y;
+	float	to_y = vars->char_facing.x;
 	
 	while (dx < 38)
 	{
