@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:11:21 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 19:25:47 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/12 19:37:28 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,22 @@ int	mouse_move(int keycode, t_global *vars)
 
 int	key_hook(int keycode, t_global *vars)
 {
-
-	if (keycode == 53)
+	if (keycode == KH_ESC)
 		close_window(vars);
-	else if (keycode == 13)
+	else if (keycode == KH_W)
 		move_player(4, vars);
-	else if (keycode == 1)
+	else if (keycode == KH_S)
 		move_player(3, vars);
-	else if (keycode == 2)
+	else if (keycode == KH_D)
 		move_player(2, vars);
-	else if (keycode == 0)
+	else if (keycode == KH_A)
 		move_player(1, vars);
-	else if (keycode == 124)
+	else if (keycode == KH_RK)
 		move_view(1, vars);
-	else if (keycode == 123)
+	else if (keycode == KH_LK)
 		move_view(2, vars);
+	// else if (keycode == KH_SPACE)
+	// 	open_door()
 	return (0);
 }
 

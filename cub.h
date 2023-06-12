@@ -16,9 +16,16 @@
 # define SIZE_X 1920
 # define SIZE_Y 1080
 # define PI 3.141592653589793238
+# define KH_A 0
+# define KH_W 13
+# define KH_S 1
+# define KH_D 2
+# define KH_ESC 53
+# define KH_LK 123
+# define KH_RK 124
+# define KH_SPACE 49
 # define FOV 3.141592653589793238/4
 # define STEP_S 0.02
-
 
 # include "./gnl/get_next_line.h"
 # include "./libft/libft.h"
