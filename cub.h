@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:59:17 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 18:05:30 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/12 19:51:36 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # define SIZE_X 1920
 # define SIZE_Y 1080
 # define PI 3.141592653589793238
+# define FOV 3.141592653589793238/4
+# define STEP_S 0.02
+
 
 # include "./gnl/get_next_line.h"
 # include "./libft/libft.h"
@@ -71,6 +74,13 @@ typedef struct s_color {
 	int	trgb;
 } t_color;
 
+typedef struct s_wall_rend{
+	int 	column;
+	int 	size;
+	int 	position[2];
+	t_image *n_wall;
+} t_wall_rend;
+
 /*math*/
 float dot_prod(float v1[2], float v2[2]);
 float dist_vec(float v1[2], float v2[2]);
@@ -110,6 +120,6 @@ void	move_player(int move_to, t_global *vars);
 void move_view(int view_to, t_global *vars);
 
 /* render walls */
-void    render_wall_col(t_global *vars, int column, int size, int *pos);
+void    render_wall_col(t_global *vars, t_wall_rend *p);
 
 #endif
