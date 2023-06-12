@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 17:05:21 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 17:18:21 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/12 20:47:20 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ void scale_minimap(t_global *vars, t_image *m_map, int map_width)
 			if (vars->map[y][x] != '0' && vars->map[y][x] != '1' && vars->map[y][x] != '\n')
 			{	
 				draw_scaled_pixel(m_map, x, y, scale, colors[0]);
-				draw_line(vars, m_map, x + 0.485, y + 0.485, scale, 0x0000FF);
-				draw_circle(m_map, x + 0.485, y + 0.485, 5, scale, 0xFF0000);
+				// draw_line(vars, m_map, x + 0.485, y + 0.485, scale, 0x0000FF);
+				// draw_circle(m_map, x + 0.485, y + 0.485, 5, scale, 0xFF0000);
 			}
 			if (vars->map[y][x] == '0')
 				draw_scaled_pixel(m_map, x, y, scale, colors[0]);
@@ -117,6 +117,13 @@ void scale_minimap(t_global *vars, t_image *m_map, int map_width)
 				draw_scaled_pixel(m_map, x, y, scale, colors[1]);
 		}
 	}
+	printf("map char: %c\n", vars->map[(int)roundf(vars->char_pos[1])][(int)roundf(vars->char_pos[0])]);
+	printf("to char Y: %i, X: %i\n", (int)roundf(vars->char_pos[0]), (int)roundf(vars->char_pos[1]));
+	// if (vars->map[(int)roundf(vars->char_pos[0])][(int)roundf(vars->char_pos[1])] != '1')
+	// {
+		draw_line(vars, m_map, vars->char_pos[1] + 0.485, vars->char_pos[0] + 0.485, scale, 0x0000FF);
+		draw_circle(m_map, vars->char_pos[1] + 0.485, vars->char_pos[0] + 0.485, 5, scale, 0xFF0000);
+	// }
 }
 
 int put_minimap(t_global *vars)

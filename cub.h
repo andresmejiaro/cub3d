@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:59:17 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 18:05:30 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/12 19:37:19 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 # define SIZE_X 1920
 # define SIZE_Y 1080
 # define PI 3.141592653589793238
+# define KH_A 0
+# define KH_W 13
+# define KH_S 1
+# define KH_D 2
+# define KH_ESC 53
+# define KH_LK 123
+# define KH_RK 124
+# define KH_SPACE 49
 
 # include "./gnl/get_next_line.h"
 # include "./libft/libft.h"
