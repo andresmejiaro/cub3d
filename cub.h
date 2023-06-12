@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:59:17 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/11 20:48:14 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/12 00:40:36 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # define SIZE_X 1920
 # define SIZE_Y 1080
+# define PI 3.141592653589793238
 
 # include "./gnl/get_next_line.h"
 # include "./libft/libft.h"
@@ -24,6 +25,7 @@
 # include <math.h>
 # include <mlx.h>
 # include <fcntl.h>
+
 
 typedef struct s_image {
 	char	*file;
@@ -49,6 +51,8 @@ typedef struct s_global{
 	t_image	SO_texture;
 	t_image	WE_texture;
 	t_image	EA_texture;
+	float	char_pos[2];
+	float	char_facing[2];
 }				t_global;
 
 typedef struct s_text_param {
@@ -66,15 +70,23 @@ typedef struct s_color {
 	int	trgb;
 } t_color;
 
+/*math*/
+float dot_prod(float v1[2], float v2[2]);
+float dist_vec(float v1[2], float v2[2]);
+void rotate_vector(float *vec, float rad);
+void	norm_vect(float *v1);
+float *inter_lines(float orig1[2], float dir1[2], float orig2[2], float dir2[2]);
+void rotate_vector(float *vec, float rad);
+
 /* parser */
 int		check_args(int argc, char *file);
 int		check_map(char *file);
 void	get_map(t_global *vars, char *file);
-int		is_playable(int fd);
 int		check_borders(char **matrix);
 
 /* start map */
 int		start_map(t_global *vars, char *argv);
+void	get_positions(t_global *vars);
 
 /* key hooks */
 int		initialize_key_hooks(t_global *vars);
@@ -89,6 +101,12 @@ void	background(t_global *vars);
 
 /* minimap */
 int		put_minimap(t_global *vars);
+
+/* move player */
+void	move_player(int move_to, t_global *vars);
+
+/* move view */
+void move_view(int view_to, t_global *vars);
 
 /* render walls */
 void    render_wall_col(t_global *vars, int column, int size, int *pos);

@@ -5,15 +5,15 @@ SRCS_DIR = ./src
 GNL_DIR = ./gnl
 
 SRCS = $(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c \
-		$(SRCS_DIR)/parser/check_args.c $(SRCS_DIR)/parser/check_map.c $(SRCS_DIR)/parser/is_playable.c $(SRCS_DIR)/parser/get_map.c \
+		$(SRCS_DIR)/parser/check_args.c $(SRCS_DIR)/parser/check_map.c $(SRCS_DIR)/parser/get_positions.c $(SRCS_DIR)/parser/get_map.c \
 		$(SRCS_DIR)/main.c $(SRCS_DIR)/game/start_map.c $(SRCS_DIR)/game/key_hooks.c $(SRCS_DIR)/game/mlx_utils.c $(SRCS_DIR)/game/background.c \
-		$(SRCS_DIR)/game/minimap.c $(SRCS_DIR)/game/render_walls.c \ 
-    $(SRCS_DIR)/vector_math/distances.c
+		$(SRCS_DIR)/game/minimap.c $(SRCS_DIR)/game/render_walls.c $(SRCS_DIR)/game/move_player.c $(SRCS_DIR)/game/move_view.c \
+    $(SRCS_DIR)/vector_math/distances.c $(SRCS_DIR)/vector_math/rotation.c
 
 OBJS = ${SRCS:.c=.o}
 
 CC = gcc
-CFLAGS = -Wall -Wextra #-Werror
+CFLAGS = -Wall -Wextra -g3 -fsanitize=address #-Werror
 #CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
 
 LIBFT_DIR = ./libft

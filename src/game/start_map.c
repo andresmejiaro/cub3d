@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   start_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 16:40:53 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/11 20:53:32 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/12 00:26:25 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../../cub.h"
 
 // hay que  hacerlo de manera distinta
 // la funcion put_tile esta comentada en mlx_utils.c
@@ -31,6 +31,7 @@ int	start_map(t_global *vars, char	*argv)
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, SIZE_X, SIZE_Y, "Cub3D");
 	get_map(vars, argv);
+	get_positions(vars);
 	background(vars);
 	if (!put_minimap(vars))
 		return (0);
