@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   start_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 16:40:53 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 14:33:06 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/12 00:26:25 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../../cub.h"
 
 // hay que  hacerlo de manera distinta
 // la funcion put_tile esta comentada en mlx_utils.c

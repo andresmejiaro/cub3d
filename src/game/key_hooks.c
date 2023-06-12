@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   key_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:11:21 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 14:43:36 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/12 00:26:21 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../../cub.h"
 
 int	key_hook(int keycode, t_global *vars)
 {

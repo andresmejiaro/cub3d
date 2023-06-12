@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:59:17 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 17:17:57 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/12 00:40:36 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_global{
 	t_image	SO_texture;
 	t_image	WE_texture;
 	t_image	EA_texture;
-  	float	char_pos[2];
+	float	char_pos[2];
 	float	char_facing[2];
 }				t_global;
 
@@ -77,7 +77,6 @@ void rotate_vector(float *vec, float rad);
 void	norm_vect(float *v1);
 float *inter_lines(float orig1[2], float dir1[2], float orig2[2], float dir2[2]);
 void rotate_vector(float *vec, float rad);
-
 
 /* parser */
 int		check_args(int argc, char *file);
