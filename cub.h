@@ -6,11 +6,7 @@
 /*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:59:17 by mpizzolo          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/06/12 19:37:19 by mpizzolo         ###   ########.fr       */
-=======
-/*   Updated: 2023/06/12 19:51:36 by amejia           ###   ########.fr       */
->>>>>>> 399956886b3ed8dba9470c28597d7f4c62cc341a
+/*   Updated: 2023/06/12 22:12:12 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +16,6 @@
 # define SIZE_X 1920
 # define SIZE_Y 1080
 # define PI 3.141592653589793238
-<<<<<<< HEAD
 # define KH_A 0
 # define KH_W 13
 # define KH_S 1
@@ -29,11 +24,8 @@
 # define KH_LK 123
 # define KH_RK 124
 # define KH_SPACE 49
-=======
 # define FOV 3.141592653589793238/4
 # define STEP_S 0.02
-
->>>>>>> 399956886b3ed8dba9470c28597d7f4c62cc341a
 
 # include "./gnl/get_next_line.h"
 # include "./libft/libft.h"
@@ -59,6 +51,11 @@ typedef struct s_image {
 	int		height;
 }				t_image;
 
+typedef struct s_vector{
+	float x;
+	float y;
+} t_vect;
+
 typedef struct s_global{
 	void	*mlx;
 	void	*win;
@@ -69,17 +66,10 @@ typedef struct s_global{
 	t_image	SO_texture;
 	t_image	WE_texture;
 	t_image	EA_texture;
-	float	char_pos[2];
-	float	char_facing[2];
+	t_vect	char_pos;
+	t_vect	char_facing;
 	int long	mouse_pos;
 }				t_global;
-
-typedef struct s_text_param {
-	char	*file;
-	int		*position;
-	int		column;
-	int		size;	
-}				t_text_param;
 
 typedef struct s_color {
 	int	t;
@@ -96,13 +86,24 @@ typedef struct s_wall_rend{
 	t_image *n_wall;
 } t_wall_rend;
 
+
+
 /*math*/
-float dot_prod(float v1[2], float v2[2]);
-float dist_vec(float v1[2], float v2[2]);
-void rotate_vector(float *vec, float rad);
-void	norm_vect(float *v1);
-float *inter_lines(float orig1[2], float dir1[2], float orig2[2], float dir2[2]);
-void rotate_vector(float *vec, float rad);
+float dot_prod(t_vect v1, t_vect v2);
+float dist_vec(t_vect v1, t_vect v2);
+float size_vect(t_vect v);
+t_vect rotate_vector(t_vect vec, float rad);
+t_vect norm_vect(t_vect v1);
+t_vect nearest_point(t_vect point, t_vect origin, t_vect director);
+t_vect set_vect(float x, float y);
+t_vect inter_lines(t_vect orig1, t_vect dir1, t_vect orig2, t_vect dir2);
+t_vect neg_v(t_vect vec);
+t_vect add_v(t_vect v1, t_vect v2);
+t_vect sub_v(t_vect v1, t_vect v2);
+t_vect f_x_v(float f, t_vect v);
+
+
+
 
 /* parser */
 int		check_args(int argc, char *file);
@@ -136,5 +137,7 @@ void move_view(int view_to, t_global *vars);
 
 /* render walls */
 void    render_wall_col(t_global *vars, t_wall_rend *p);
+void render_wall(t_global *vars,float *cor1, float *cor2, t_image *n_wall);
+
 
 #endif
