@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:59:17 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 14:42:23 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/12 17:17:57 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # define SIZE_X 1920
 # define SIZE_Y 1080
+# define PI 3.141592653589793238
 
 # include "./gnl/get_next_line.h"
 # include "./libft/libft.h"
@@ -72,8 +73,11 @@ typedef struct s_color {
 /*math*/
 float dot_prod(float v1[2], float v2[2]);
 float dist_vec(float v1[2], float v2[2]);
-float norm_vec(float v1[2], float v2[2]);
+void rotate_vector(float *vec, float rad);
+void	norm_vect(float *v1);
 float *inter_lines(float orig1[2], float dir1[2], float orig2[2], float dir2[2]);
+void rotate_vector(float *vec, float rad);
+
 
 /* parser */
 int		check_args(int argc, char *file);

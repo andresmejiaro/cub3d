@@ -6,19 +6,19 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 17:05:21 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 15:07:02 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/12 17:18:21 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub.h"
 
-void draw_circle(t_image *m_map, int centerX, int centerY, int radius, float scale, int color)
+void draw_circle(t_image *m_map, float centerX, float centerY, int radius, float scale, int color)
 {
-	int scaledCenterX = centerX * scale;
-    int scaledCenterY = centerY * scale;
-	int x = radius;
-	int y = 0;
-	int radiusError = 1 - x;
+	float scaledCenterX = centerX * scale;
+    float scaledCenterY = centerY * scale;
+	float x = radius;
+	float y = 0;
+	float radiusError = 1 - x;
 
 	while (x >= y)
 	{
@@ -76,13 +76,17 @@ void draw_scaled_pixel(t_image *m_map, int x, int y, float scale, int color)
 	}
 }
 
-void draw_line(t_image *m_map, int x, int y, float scale, int color)
+void draw_line(t_global *vars, t_image *m_map, float x, float y, float scale, int color)
 {
-	int dx = 0;
-	while (dx < scale) // Loop over scaled x-coordinates
+	float dx = 0;
+	norm_vect(vars->char_facing);
+	float	to_x = vars->char_facing[1];
+	float	to_y = vars->char_facing[0];
+	
+	while (dx < 38)
 	{
-		my_mlx_pixel_put(m_map, x * scale + dx, y * scale, color);
-		dx++;
+		my_mlx_pixel_put(m_map, (x * scale) + (dx * to_x), (y * scale) + (dx * to_y), color);
+		dx += 0.25;
 	}
 }
 
@@ -104,8 +108,8 @@ void scale_minimap(t_global *vars, t_image *m_map, int map_width)
 			if (vars->map[y][x] != '0' && vars->map[y][x] != '1' && vars->map[y][x] != '\n')
 			{	
 				draw_scaled_pixel(m_map, x, y, scale, colors[0]);
-				draw_line(m_map, vars->char_facing[1], y, scale, 0x0000FF);
-				draw_circle(m_map, x, y, 5, scale, 0xFF0000);
+				draw_line(vars, m_map, x + 0.485, y + 0.485, scale, 0x0000FF);
+				draw_circle(m_map, x + 0.485, y + 0.485, 5, scale, 0xFF0000);
 			}
 			if (vars->map[y][x] == '0')
 				draw_scaled_pixel(m_map, x, y, scale, colors[0]);

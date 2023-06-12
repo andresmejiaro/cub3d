@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_view.c                                        :+:      :+:    :+:   */
+/*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/12 14:09:15 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 17:00:48 by mpizzolo         ###   ########.fr       */
+/*   Created: 2023/06/12 16:39:12 by mpizzolo          #+#    #+#             */
+/*   Updated: 2023/06/12 16:42:30 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../../cub.h"
 
-void move_view(int view_to, t_global *vars)
+// This function overwrites vec
+void rotate_vector(float *vec, float rad)
 {
+	float temp[2];
 
-	if (view_to == 2)
-		rotate_vector(vars->char_facing, PI/8);
-	else if (view_to == 1)	
-		rotate_vector(vars->char_facing, -PI/8);
-	put_minimap(vars);
+	temp[0] = cosf(rad) * vec[0] - sinf(rad) * vec[1];
+	temp[1] = sinf(rad) * vec[0] + cosf(rad) * vec[1];
+	vec[0] = temp[0];
+	vec[1] = temp[1];	
 }
