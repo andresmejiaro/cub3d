@@ -6,7 +6,7 @@
 /*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 18:58:17 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/13 15:23:01 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/13 16:00:52 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ void render_wall(t_global *vars,t_vect cor1, t_vect cor2, t_image *n_wall)
 		p.position[0] =  960 + sinf(theta)/sin(FOV/2) * 960;
 		p.position[1] = 540;
 		p.n_wall = n_wall;
-		render_wall_col(vars,&p);
+		if (p.position[0] > 0 && p.position[0] < 1080)
+			render_wall_col(vars,&p);
 		current += STEP_S;
 		count ++;
 	}

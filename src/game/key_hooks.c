@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:11:21 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 23:09:08 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:17:38 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	key_hook(int keycode, t_global *vars)
 
 int	key_press(int keycode, t_global *vars)
 {
+	printf("%d\n", keycode);
 	vars->key_a = keycode;
 	return (0);
 }
@@ -84,6 +85,9 @@ int	initialize_key_hooks(t_global *vars)
 	// mlx_key_hook(vars->win, key_hook, vars);
 	// mlx_hook(vars->win, 6, 0, mouse_move, vars); 
 	mlx_hook(vars->win, 17, 0, close_window, vars);
+	t_vect cor1 = set_vect(1,1);
+	t_vect cor2 = set_vect(2, 1);
+	// render_wall(vars, cor1, cor2, &vars->NO_texture);
 	mlx_loop(vars->mlx);
 	return (1);
 }

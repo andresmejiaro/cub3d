@@ -6,7 +6,7 @@
 /*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 17:05:21 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/13 15:35:42 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/13 16:14:28 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ void draw_line(t_global *vars, t_image *m_map, float x, float y, float scale, in
 {
 	float dx = 0;
 	norm_vect(vars->char_facing);
-	float	to_x = vars->char_facing.y;
-	float	to_y = vars->char_facing.x;
+	float	to_x = vars->char_facing.x;
+	float	to_y = vars->char_facing.y;
 	
 	while (dx < 38 && dx >= 0)
 	{
@@ -119,8 +119,8 @@ void scale_minimap(t_global *vars, t_image *m_map, int map_width)
 	}
 	// if (vars->map[(int)roundf(vars->char_pos.y)][(int)roundf(vars->char_pos.x)] != '1')
 	// {
-		draw_line(vars, m_map, vars->char_pos.x + 0.485, vars->char_pos.y + 0.485, scale, 0x0000FF);
-		draw_circle(m_map, vars->char_pos.x + 0.485, vars->char_pos.y + 0.485, 5, scale, 0xFF0000);
+		draw_line(vars, m_map, vars->char_pos.x, vars->char_pos.y, scale, 0x0000FF);
+		draw_circle(m_map, vars->char_pos.x, vars->char_pos.y, 5, scale, 0xFF0000);
 	// }
 }
 
