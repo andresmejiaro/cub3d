@@ -6,7 +6,7 @@
 /*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 20:58:42 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 23:33:03 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/13 15:30:05 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void move_player(int move_to, t_global *vars)
 		return ;
 	facing = vars->map[(int)vars->char_pos.y][(int)vars->char_pos.x];
 	vars->map[(int)vars->char_pos.y][(int)vars->char_pos.x] = '0';
-	vars->map[tmp_y][tmp_x] = facing;
+	//vars->map[tmp_y][tmp_x] = facing;
 	vars->char_pos.x = tmp_x;
 	vars->char_pos.y = tmp_y;
 	put_minimap(vars);
