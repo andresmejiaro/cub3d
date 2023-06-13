@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 17:05:21 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 22:45:48 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/12 23:48:21 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void draw_line(t_global *vars, t_image *m_map, float x, float y, float scale, in
 	float	to_x = vars->char_facing.y;
 	float	to_y = vars->char_facing.x;
 	
-	while (dx < 38)
+	while (dx < 38 && dx >= 0)
 	{
 		my_mlx_pixel_put(m_map, (x * scale) + (dx * to_x), (y * scale) + (dx * to_y), color);
 		dx += 0.25;
@@ -97,7 +97,7 @@ void scale_minimap(t_global *vars, t_image *m_map, int map_width)
 	colors[0] = create_trgb(0, 255, 255, 255);
 	colors[1] = create_trgb(0, 0, 0, 0);
 
-	float scale = 250.0 / map_width; // Calculate the scale factor based on the map's width
+	float scale = 135.0 / map_width; // Calculate the scale factor based on the map's width
 
 	int y = -1;
 	while (vars->map[++y])
@@ -127,13 +127,17 @@ void scale_minimap(t_global *vars, t_image *m_map, int map_width)
 int put_minimap(t_global *vars)
 {
 	t_image m_map;
+	t_image frame;
 	int map_width;
 	int map_height;
 
-	m_map.img = mlx_new_image(vars->mlx, 250, 250);
+	m_map.img = mlx_new_image(vars->mlx, 135, 135);
 	m_map.addr = mlx_get_data_addr(m_map.img, &m_map.bits_per_pixel, &m_map.line_length, &m_map.endian);
 	calculate_map_dimensions(vars, &map_width, &map_height);
 	scale_minimap(vars, &m_map, map_width);
-	mlx_put_image_to_window(vars->mlx, vars->win, m_map.img, 0, 0);
+	mlx_put_image_to_window(vars->mlx, vars->win, m_map.img, 5, 5);
+	frame.img = mlx_xpm_file_to_image(vars->mlx, "./assets/frame.xpm", &frame.width, &frame.height);
+	frame.addr = mlx_get_data_addr(frame.img, &frame.bits_per_pixel, &frame.line_length, &frame.endian);
+	mlx_put_image_to_window(vars->mlx, vars->win, frame.img, 0, 0);
 	return (1);
 }
