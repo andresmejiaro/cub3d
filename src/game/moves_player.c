@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 20:58:42 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/13 16:28:39 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:32:12 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void move_view(int view_to, t_global *vars)
 		vars->char_facing = rotate_vector(vars->char_facing, PI/56);
 	put_minimap(vars);
 }
-
+	
 void move_player(int move_to, t_global *vars)
 {
 	t_vect	tmp;
@@ -55,7 +55,6 @@ void move_player(int move_to, t_global *vars)
 	if (next_position == '1')
 		return ;
 	vars->map[(int)roundf(vars->char_pos.y)][(int)roundf(vars->char_pos.x)] = '0';
-	vars->char_pos.x = tmp.x;
-	vars->char_pos.y = tmp.y;
+	vars->char_pos = tmp;
 	put_minimap(vars);
 }
