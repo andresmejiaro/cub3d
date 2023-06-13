@@ -6,7 +6,7 @@
 /*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 18:58:17 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 22:09:14 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/13 15:23:01 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,37 +64,40 @@ void    render_wall_col(t_global *vars, t_wall_rend *p)
 		p->position[1]);
 }
 
-// void render_wall(t_global *vars,float *cor1, float *cor2, t_image *n_wall)
-// {
-// 	float		walldir[2];
-// 	float		wallpos[2];
-// 	float		current;
-// 	t_wall_rend	p;
-// 	float		vector2me[2];
-// 	int count = 0;
 
-// 	neg_v(cor1);
-// 	add_v(cor2, cor1, walldir);
-// 	current = 0;
-// 	while (current < 1)
-// 	{
-// 		wallpos[0] = cor1[0] + current * walldir[0];
-// 		wallpos[1] = cor1[1] + current * walldir[1];
-// 		vector2me[0] = walldir[0] - vars->char_pos.y;
-// 		vector2me[1] = walldir[1] - vars->char_pos.x;
-// 		distance = dot_prod(vector2me, vars->char_facing);
+// wall contains director in 0, current position in 1 and direct ffrom player in 2
+void render_wall(t_global *vars,t_vect cor1, t_vect cor2, t_image *n_wall)
+{
+	t_vect wall[3];
+	// float		walldir[2];
+	// float		wallpos[2];
+	float		current;
+	t_wall_rend	p;
+	// float		vector2me[2];
+	int count = 0;
+	float theta;
+
+	// neg_v(cor1);
+	// add_v(cor2, cor1, walldir);
+	wall[0] = sub_v(cor2, cor1);
+	current = 0;
+	while (current < 1)
+	{
+		wall[1] = add_v(cor1, f_x_v(current, wall[0]));
+		// wallpos[0] = cor1[0] + current * walldir[0];
+		// wallpos[1] = cor1[1] + current * walldir[1];
+		wall[2] = sub_v(wall[1],vars->char_pos);		
+		// vector2me[0] = walldir[0] - vars->char_pos.y;
+		// vector2me[1] = walldir[1] - vars->char_pos.x;
+		theta =acosf(dot_prod(wall[2], vars->char_facing) / size_vect(wall[2]));
+		p.column = count;
 		
-// 		vector2me[0] -= distance * vars->char_facing.y;
-// 		vector2me[1] -= distance * vars->char_facing.x;
-// 		p.column = count;
-// 		float z[2];
-// 		ft_bzero(z, 2*sizeof(float));
-// 		p.position[0] =  960 + dist_vec(vector2me,z);
-// 		p.position[1] = 540;
-// 		p.n_wall = n_wall;
-// 		render_wall_col(vars,&p);
-// 		current += STEP_S;
-// 		count ++;
-// 	}
+		p.position[0] =  960 + sinf(theta)/sin(FOV/2) * 960;
+		p.position[1] = 540;
+		p.n_wall = n_wall;
+		render_wall_col(vars,&p);
+		current += STEP_S;
+		count ++;
+	}
 	
-// }
+}

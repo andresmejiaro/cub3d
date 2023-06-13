@@ -6,7 +6,7 @@
 /*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 20:58:42 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 22:12:31 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/12 23:33:03 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void move_view(int view_to, t_global *vars)
 		vars->char_facing = rotate_vector(vars->char_facing, -PI/8);
 	put_minimap(vars);
 }
-
+	
 void move_player(int move_to, t_global *vars)
 {
 	int		tmp_x;
