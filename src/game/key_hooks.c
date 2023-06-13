@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:11:21 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 19:37:28 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/12 23:09:08 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	mouse_move(int keycode, t_global *vars)
 
 int	key_hook(int keycode, t_global *vars)
 {
+	if (keycode == -1)
+		return (0);
 	if (keycode == KH_ESC)
 		close_window(vars);
 	else if (keycode == KH_W)
@@ -44,11 +46,44 @@ int	key_hook(int keycode, t_global *vars)
 	return (0);
 }
 
+// int	key_actions(t_global *vars)
+// {
+// 	if (vars->key_a == 1)
+// 		move_player(1, vars);
+// 	return (0);
+// }
+
+int	key_press(int keycode, t_global *vars)
+{
+	vars->key_a = keycode;
+	return (0);
+}
+
+int	key_released(int keycode, t_global *vars)
+{
+	vars->key_a = -1;
+	return (0);
+}
+
+int	game_loop(void *param)
+{
+	t_global *vars;
+
+	vars = (t_global *)param;
+	// usleep(20000);
+	key_hook(vars->key_a, vars);
+	return (0);
+}
+
 int	initialize_key_hooks(t_global *vars)
 {
 	vars->mouse_pos = 1;
-	mlx_key_hook(vars->win, key_hook, vars);
+	mlx_hook(vars->win, 2, 1L << 0, key_press, vars);
+	mlx_key_hook(vars->win, key_released, vars);
+	mlx_loop_hook(vars->mlx, game_loop, (void *)vars);
+	// mlx_key_hook(vars->win, key_hook, vars);
 	// mlx_hook(vars->win, 6, 0, mouse_move, vars); 
 	mlx_hook(vars->win, 17, 0, close_window, vars);
+	mlx_loop(vars->mlx);
 	return (1);
 }

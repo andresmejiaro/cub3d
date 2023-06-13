@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:59:17 by mpizzolo          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/06/13 15:22:46 by amejia           ###   ########.fr       */
+=======
+/*   Updated: 2023/06/12 23:01:33 by mpizzolo         ###   ########.fr       */
+>>>>>>> mateo-minimap
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +73,7 @@ typedef struct s_global{
 	t_vect	char_pos;
 	t_vect	char_facing;
 	int long	mouse_pos;
+	int		key_a;
 }				t_global;
 
 typedef struct s_color {
