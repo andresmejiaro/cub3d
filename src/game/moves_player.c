@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 20:58:42 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/13 15:49:54 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:28:39 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,14 @@ void move_view(int view_to, t_global *vars)
 
 void move_player(int move_to, t_global *vars)
 {
-	float	tmp_x;
-	float	tmp_y;
+	t_vect	tmp;
 	char	next_position;
 
-	tmp_x = vars->char_pos.x;
-	tmp_y = vars->char_pos.y;
+	tmp.x = vars->char_pos.x;
+	tmp.y = vars->char_pos.y;
 
-	tmp_x = vars->char_pos.x;
-	tmp_y = vars->char_pos.y;
+	tmp.x = vars->char_pos.x;
+	tmp.y = vars->char_pos.y;
 	if (vars->char_pos.y < 1.0 && (move_to == 4))
 		return ;
 	if (vars->char_pos.x < 1.0 && (move_to == 1))
@@ -41,20 +40,22 @@ void move_player(int move_to, t_global *vars)
 	if (next_position == '1')
 		return ;
 	if (move_to == 1)
-		tmp_x -= 0.025;
+		tmp = add_v(vars->char_pos, f_x_v(0.025, rotate_vector(vars->char_facing, -PI/2)));
 	else if (move_to == 2)
-		tmp_x += 0.025;
+		tmp = add_v(vars->char_pos, f_x_v(0.025, rotate_vector(vars->char_facing, PI/2)));
 	else if (move_to == 3)
-		tmp_y += 0.025;
+		tmp = add_v(vars->char_pos, f_x_v(0.025, rotate_vector(vars->char_facing, PI)));
 	else if (move_to == 4)
-		tmp_y -= 0.025;
-	if (tmp_x < 0 || tmp_y < 0 || !vars->map[(int)roundf(tmp_y)][(int)roundf(tmp_x)])
+		tmp = add_v(vars->char_pos, f_x_v(0.025, vars->char_facing));
+	if (tmp.x < 0 || tmp.y < 0 || !vars->map[(int)roundf(tmp.y)][(int)roundf(tmp.x)])
 		return ;
-	next_position = vars->map[(int)roundf(tmp_y)][(int)roundf(tmp_x)];
+	next_position = vars->map[(int)roundf(tmp.y)][(int)roundf(tmp.x)];
+	if (tmp.x < 1|| tmp.y < 1)
+		return ;
 	if (next_position == '1')
 		return ;
 	vars->map[(int)roundf(vars->char_pos.y)][(int)roundf(vars->char_pos.x)] = '0';
-	vars->char_pos.x = tmp_x;
-	vars->char_pos.y = tmp_y;
+	vars->char_pos.x = tmp.x;
+	vars->char_pos.y = tmp.y;
 	put_minimap(vars);
 }
