@@ -6,7 +6,7 @@
 /*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:11:21 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/13 16:33:06 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/13 16:37:36 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,9 @@ int	game_loop(void *param)
 
 	vars = (t_global *)param;
 	key_actions(vars);
+	t_vect cor1 = set_vect(1,1);
+	t_vect cor2 = set_vect(2, 1);
+	render_wall(vars, cor1, cor2, vars->NO_texture);
 	return (0);
 }
 
@@ -104,9 +107,6 @@ int	initialize_key_hooks(t_global *vars)
 	// mlx_key_hook(vars->win, key_hook, vars);
 	// mlx_hook(vars->win, 6, 0, mouse_move, vars); 
 	mlx_hook(vars->win, 17, 0, close_window, vars);
-	t_vect cor1 = set_vect(1,1);
-	t_vect cor2 = set_vect(2, 1);
-	// render_wall(vars, cor1, cor2, &vars->NO_texture);
 	mlx_loop(vars->mlx);
 	return (1);
 }

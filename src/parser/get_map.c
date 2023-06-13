@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 12:49:24 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/13 15:45:39 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:37:59 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	get_textures(t_global *vars, int fd)
 	vars->NO_texture = (t_image *)malloc(sizeof(t_image));
 	vars->NO_texture->file = ft_strtrim((line + 3), "\n");
 	vars->NO_texture->img = mlx_xpm_file_to_image(vars->mlx, vars->NO_texture->file, &vars->NO_texture->width, &vars->NO_texture->height);
-	// vars->NO_texture->addr = mlx_get_data_addr(vars->NO_texture->img, &vars->NO_texture->bits_per_pixel, &vars->NO_texture->line_length, &vars->NO_texture->endian);
+	vars->NO_texture->addr = mlx_get_data_addr(vars->NO_texture->img, &vars->NO_texture->bits_per_pixel, &vars->NO_texture->line_length, &vars->NO_texture->endian);
 	line = get_next_line(fd);
 	vars->SO_texture = (t_image *)malloc(sizeof(t_image));
 	vars->SO_texture->file = ft_strtrim((line + 3), "\n");
