@@ -6,7 +6,7 @@
 /*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 13:57:38 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/13 15:56:23 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/13 16:32:04 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	*where_is_p(char **matrix)
 		return (0);
 	y = 0;
 	x = 0;
-	while (matrix[y][x])
+	while (matrix[y])
 	{
 		x = 0;
 		while (matrix[y][x])

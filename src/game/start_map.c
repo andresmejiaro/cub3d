@@ -6,7 +6,7 @@
 /*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 16:40:53 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/13 16:13:57 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/13 16:32:36 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,19 @@
 // 	return (1);
 // }
 
+void	start_keys(t_global *vars)
+{
+	vars->keys = (t_keys *)malloc(sizeof(t_keys));
+	vars->keys->k_a = 0;
+	vars->keys->k_w = 0;
+	vars->keys->k_s = 0;
+	vars->keys->k_d = 0;
+	vars->keys->k_l = 0;
+	vars->keys->k_r = 0;
+	vars->keys->k_esc = 0;
+	vars->keys->k_space = 0;
+}
+
 int	start_map(t_global *vars, char	*argv)
 {
 	vars->mlx = mlx_init();
@@ -33,6 +46,7 @@ int	start_map(t_global *vars, char	*argv)
 	get_map(vars, argv);
 	get_positions(vars);
 	background(vars);
+	start_keys(vars);
 	if (!put_minimap(vars))
 		return (0);
 	if (!initialize_key_hooks(vars))
