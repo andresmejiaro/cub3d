@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:59:17 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 23:01:33 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/13 15:10:15 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,16 @@
 # include <mlx.h>
 # include <fcntl.h>
 
+typedef struct s_keys {
+	int k_a;
+	int k_w;
+	int k_s;
+	int k_d;
+	int k_l;
+	int k_r;
+	int	k_esc;
+	int	k_space;
+} t_keys;
 
 typedef struct s_image {
 	char	*file;
@@ -48,7 +58,7 @@ typedef struct s_image {
 	int		size[2];
 	int		pos[2];
 	int		width;
-	int		height;
+	int		height;	
 }				t_image;
 
 typedef struct s_vector{
@@ -60,16 +70,18 @@ typedef struct s_global{
 	void	*mlx;
 	void	*win;
 	char	**map;
+	int		map_rows;
+	int		map_columns;
 	int		floor_color[3];
 	int		ceiling_color[3];
-	t_image	NO_texture;
-	t_image	SO_texture;
-	t_image	WE_texture;
-	t_image	EA_texture;
+	t_image	*NO_texture;
+	t_image	*SO_texture;
+	t_image	*WE_texture;
+	t_image	*EA_texture;
 	t_vect	char_pos;
 	t_vect	char_facing;
 	int long	mouse_pos;
-	int		key_a;
+	t_keys	*keys;
 }				t_global;
 
 typedef struct s_color {

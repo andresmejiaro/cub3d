@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:11:21 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 23:09:08 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/13 14:29:28 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,45 +23,66 @@ int	mouse_move(int keycode, t_global *vars)
 	return 0;	
 }
 
-int	key_hook(int keycode, t_global *vars)
+int	key_actions(t_global *vars)
 {
-	if (keycode == -1)
-		return (0);
-	if (keycode == KH_ESC)
+	if (vars->keys->k_esc == 1)
 		close_window(vars);
-	else if (keycode == KH_W)
+	else if (vars->keys->k_w == 1)
 		move_player(4, vars);
-	else if (keycode == KH_S)
+	else if (vars->keys->k_s == 1)
 		move_player(3, vars);
-	else if (keycode == KH_D)
+	else if (vars->keys->k_d == 1)
 		move_player(2, vars);
-	else if (keycode == KH_A)
+	else if (vars->keys->k_a == 1)
 		move_player(1, vars);
-	else if (keycode == KH_RK)
+	else if (vars->keys->k_r == 1)
 		move_view(1, vars);
-	else if (keycode == KH_LK)
+	else if (vars->keys->k_l == 1)
 		move_view(2, vars);
-	// else if (keycode == KH_SPACE)
+	// else if (vars->keys->k_space == 1)
 	// 	open_door()
 	return (0);
 }
 
-// int	key_actions(t_global *vars)
-// {
-// 	if (vars->key_a == 1)
-// 		move_player(1, vars);
-// 	return (0);
-// }
-
 int	key_press(int keycode, t_global *vars)
 {
-	vars->key_a = keycode;
+	if (keycode == KH_ESC)
+		vars->keys->k_esc = 1;
+	else if (keycode == KH_W)
+		vars->keys->k_w = 1;
+	else if (keycode == KH_S)
+		vars->keys->k_s = 1;
+	else if (keycode == KH_D)
+		vars->keys->k_d = 1;
+	else if (keycode == KH_A)
+		vars->keys->k_a = 1;
+	else if (keycode == KH_RK)
+		vars->keys->k_r = 1;
+	else if (keycode == KH_LK)
+		vars->keys->k_l = 1;
+	else if (keycode == KH_SPACE)
+		vars->keys->k_space = 1;
 	return (0);
 }
 
 int	key_released(int keycode, t_global *vars)
 {
-	vars->key_a = -1;
+	if (keycode == KH_ESC)
+		vars->keys->k_esc = 0;
+	else if (keycode == KH_W)
+		vars->keys->k_w = 0;
+	else if (keycode == KH_S)
+		vars->keys->k_s = 0;
+	else if (keycode == KH_D)
+		vars->keys->k_d = 0;
+	else if (keycode == KH_A)
+		vars->keys->k_a = 0;
+	else if (keycode == KH_RK)
+		vars->keys->k_r = 0;
+	else if (keycode == KH_LK)
+		vars->keys->k_l = 0;
+	else if (keycode == KH_SPACE)
+		vars->keys->k_space = 0;
 	return (0);
 }
 
@@ -70,8 +91,7 @@ int	game_loop(void *param)
 	t_global *vars;
 
 	vars = (t_global *)param;
-	// usleep(20000);
-	key_hook(vars->key_a, vars);
+	key_actions(vars);
 	return (0);
 }
 

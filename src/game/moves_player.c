@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 20:58:42 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 23:18:29 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/13 15:49:54 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void move_view(int view_to, t_global *vars)
 {
 
 	if (view_to == 2)
-		vars->char_facing = rotate_vector(vars->char_facing, PI/56);
-	else if (view_to == 1)	
 		vars->char_facing = rotate_vector(vars->char_facing, -PI/56);
+	else if (view_to == 1)	
+		vars->char_facing = rotate_vector(vars->char_facing, PI/56);
 	put_minimap(vars);
 }
 
