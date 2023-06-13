@@ -6,7 +6,7 @@
 /*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:59:17 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/13 16:32:20 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/13 17:24:50 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,8 @@ void	move_player(int move_to, t_global *vars);
 void move_view(int view_to, t_global *vars);
 
 /* render walls */
-void    render_wall_col(t_global *vars, t_wall_rend *p);
+//void    render_wall_col(t_global *vars, t_wall_rend *p);
+void    render_wall_col(t_global *vars, int column, int size, int *position);
 void render_wall(t_global *vars,t_vect cor1, t_vect cor2, t_image *n_wall);
 
 
