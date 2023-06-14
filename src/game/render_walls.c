@@ -6,7 +6,7 @@
 /*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 18:58:17 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/14 20:54:01 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/14 21:03:19 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void    render_wall_col(t_global *vars, int column, int size, int *position)
 	p.position[0] = position[0];
 	p.position[1] = position[1];
 
-	n_wall.img = mlx_xpm_file_to_image(vars->mlx, vars->NO_texture->file, &n_wall.width, &n_wall.height);
+	n_wall.img = mlx_xpm_file_to_image(vars->mlx, vars->no_texture->file, &n_wall.width, &n_wall.height);
 	n_wall.addr = mlx_get_data_addr(n_wall.img, &n_wall.bits_per_pixel, &n_wall.line_length, &n_wall.endian);
 	p.n_wall = &n_wall;
 	ratio = (float)n_wall.height/size;

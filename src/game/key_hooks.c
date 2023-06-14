@@ -1,26 +1,25 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   key_hooks.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/10 21:11:21 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/14 18:22:59 by amejia           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "../../cub.h"
 
-
-int	mouse_move(int keycode, t_global *vars)
+void	mouse_move(t_global *vars)
 {
-	if (vars->mouse_pos - keycode > 100)
-	{
-		vars->mouse_pos = keycode;
-		printf("keycode: %i\n", keycode);
+	int	x;
+	int	y;
+	int	res;
+
+	x = 0;
+	y = 0;
+	mlx_mouse_hide();
+	res = mlx_mouse_get_pos(vars->win, &x, &y);
+	if (x - vars->mouse_pos.x > 100 || vars->mouse_pos.x - x > 100)
+	{	
+		if (x - vars->mouse_pos.x > 100)
+			move_view(1, vars);
+		else
+			move_view(2, vars);
+		res = mlx_mouse_move(vars->win, 950, 600);
+		vars->mouse_pos.x = 950;
 	}
-	return 0;	
 }
 
 int	key_actions(t_global *vars)
@@ -88,22 +87,13 @@ int	key_released(int keycode, t_global *vars)
 
 int	game_loop(void *param)
 {
-	t_global *vars;
+	t_global	*vars;
 
 	vars = (t_global *)param;
 	key_actions(vars);
+	mouse_move(vars);
+	return (0);
+}
 	
-}
 
-int	initialize_key_hooks(t_global *vars)
-{
-	vars->mouse_pos = 1;
-	mlx_hook(vars->win, 2, 1L << 0, key_press, vars);
-	mlx_key_hook(vars->win, key_released, vars);
-	mlx_loop_hook(vars->mlx, game_loop, (void *)vars);
-	// mlx_key_hook(vars->win, key_hook, vars);
-	// mlx_hook(vars->win, 6, 0, mouse_move, vars); 
-	mlx_hook(vars->win, 17, 0, close_window, vars);
-	mlx_loop(vars->mlx);
-	return (1);
-}
+

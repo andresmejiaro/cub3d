@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/12 18:59:17 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/14 20:53:25 by amejia           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef CUB_H
 # define CUB_H
@@ -29,23 +18,25 @@
 
 # include "./gnl/get_next_line.h"
 # include "./libft/libft.h"
+# include "./mlx/mlx.h"
+// # include "./mlx/mlx_int.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
 # include <math.h>
-# include <mlx.h>
+// # include <mlx.h>
 # include <fcntl.h>
 
 typedef struct s_keys {
-	int k_a;
-	int k_w;
-	int k_s;
-	int k_d;
-	int k_l;
-	int k_r;
+	int	k_a;
+	int	k_w;
+	int	k_s;
+	int	k_d;
+	int	k_l;
+	int	k_r;
 	int	k_esc;
 	int	k_space;
-} t_keys;
+}	t_keys;
 
 typedef struct s_image {
 	char	*file;
@@ -59,12 +50,12 @@ typedef struct s_image {
 	int		pos[2];
 	int		width;
 	int		height;	
-}			t_image;
+}	t_image;
 
 typedef struct s_vector{
-	float x;
-	float y;
-} t_vect;
+	float	x;
+	float	y;
+}	t_vect;
 
 typedef struct s_global{
 	void	*mlx;
@@ -74,15 +65,15 @@ typedef struct s_global{
 	int		map_columns;
 	int		floor_color[3];
 	int		ceiling_color[3];
-	t_image	*NO_texture;
-	t_image	*SO_texture;
-	t_image	*WE_texture;
-	t_image	*EA_texture;
+	t_image	*no_texture;
+	t_image	*so_texture;
+	t_image	*we_texture;
+	t_image	*ea_texture;
 	t_vect	char_pos;
 	t_vect	char_facing;
-	int long	mouse_pos;
+	t_vect	mouse_pos;
 	t_keys	*keys;
-}				t_global;
+}	t_global;
 
 typedef struct s_color {
 	int	t;
@@ -90,33 +81,28 @@ typedef struct s_color {
 	int	g;
 	int	b;
 	int	trgb;
-} t_color;
+}	t_color;
 
 typedef struct s_wall_rend{
-	int 	column;
-	int 	size;
-	int 	position[2];
-	t_image *n_wall;
-} t_wall_rend;
-
-
+	int		column;
+	int		size;
+	int		position[2];
+	t_image	*n_wall;
+}	t_wall_rend;
 
 /*math*/
-float dot_prod(t_vect v1, t_vect v2);
-float dist_vec(t_vect v1, t_vect v2);
-float size_vect(t_vect v);
-t_vect rotate_vector(t_vect vec, float rad);
-t_vect norm_vect(t_vect v1);
-t_vect nearest_point(t_vect point, t_vect origin, t_vect director);
-t_vect set_vect(float x, float y);
-t_vect inter_lines(t_vect orig1, t_vect dir1, t_vect orig2, t_vect dir2);
-t_vect neg_v(t_vect vec);
-t_vect add_v(t_vect v1, t_vect v2);
-t_vect sub_v(t_vect v1, t_vect v2);
-t_vect f_x_v(float f, t_vect v);
-
-
-
+float	dot_prod(t_vect v1, t_vect v2);
+float	dist_vec(t_vect v1, t_vect v2);
+float	size_vect(t_vect v);
+t_vect	rotate_vector(t_vect vec, float rad);
+t_vect	norm_vect(t_vect v1);
+t_vect	nearest_point(t_vect point, t_vect origin, t_vect director);
+t_vect	set_vect(float x, float y);
+t_vect	inter_lines(t_vect orig1, t_vect dir1, t_vect orig2, t_vect dir2);
+t_vect	neg_v(t_vect vec);
+t_vect	add_v(t_vect v1, t_vect v2);
+t_vect	sub_v(t_vect v1, t_vect v2);
+t_vect	f_x_v(float f, t_vect v);
 
 /* parser */
 int		check_args(int argc, char *file);
@@ -141,12 +127,26 @@ void	background(t_global *vars);
 
 /* minimap */
 int		put_minimap(t_global *vars);
+int		put_map(t_global *vars);
+void	scale_map(t_global *vars, t_image *m_map, int map_width);
+void	draw_line(t_global *vars, t_image *m_map,
+			float x, float y, float scale, int color);
+void	draw_scaled_pixel(t_image *m_map, int x, int y, float scale, int color);
+void	draw_circle(t_image *m_map, float centerX,
+			float centerY, int radius, float scale, int color);
+
+/* key hook */
+int		game_loop(void *param);
+int		key_released(int keycode, t_global *vars);
+int		key_press(int keycode, t_global *vars);
+int		key_actions(t_global *vars);
+void	mouse_move(t_global *vars);
 
 /* move player */
 void	move_player(int move_to, t_global *vars);
 
 /* move view */
-void move_view(int view_to, t_global *vars);
+void	move_view(int view_to, t_global *vars);
 
 /* render walls */
 //void    render_wall_col(t_global *vars, t_wall_rend *p);
