@@ -6,7 +6,7 @@
 /*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:35:26 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 18:52:21 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/14 18:25:24 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	background(t_global *vars)
 			else
 				n = c_color;
 			my_mlx_pixel_put(&img, x[0], x[1], n);
-			
 		}
 	}
 	mlx_put_image_to_window(vars->mlx, vars->win, img.img, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:11:21 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/13 17:40:58 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/14 18:22:59 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,15 +92,7 @@ int	game_loop(void *param)
 
 	vars = (t_global *)param;
 	key_actions(vars);
-	t_vect cor1 = set_vect(1,1);
-	t_vect cor2 = set_vect(2, 1);
-	t_image tmp;
 	
-	
-	tmp.img = mlx_xpm_file_to_image(vars->mlx, "/Users/amejia/cub3d/assets/wall_NO.xpm", &tmp.width, &tmp.height);
-	tmp.addr = mlx_get_data_addr(&tmp.img, &tmp.bits_per_pixel, &tmp.line_length, &tmp.endian);
-	render_wall(vars, cor1, cor2, &tmp);
-	return (0);
 }
 
 int	initialize_key_hooks(t_global *vars)

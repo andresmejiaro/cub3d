@@ -6,7 +6,7 @@
 /*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:59:17 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/13 17:24:50 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/14 20:53:25 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_image {
 	int		pos[2];
 	int		width;
 	int		height;	
-}				t_image;
+}			t_image;
 
 typedef struct s_vector{
 	float x;

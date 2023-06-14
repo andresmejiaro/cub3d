@@ -13,7 +13,7 @@ SRCS = $(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c \
 OBJS = ${SRCS:.c=.o}
 
 CC = gcc
-CFLAGS = -Wall -Wextra -g3 -fsanitize=address #-Werror
+CFLAGS = -Wall -Wextra -g3 #-fsanitize=address #-Werror
 #CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
 
 LIBFT_DIR = ./libft
