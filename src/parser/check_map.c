@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 20:55:18 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 14:42:09 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/14 03:41:43 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ int	check_texture(int fd, char *texture)
 {
 	char	*line;
 	char	*tmp_free;	
-	
+
 	line = get_next_line(fd);
 	tmp_free = ft_substr(line, 0, 2);
 	if (ft_strncmp(texture, tmp_free, 2))
 	{
-		printf("%s, texture not found\n", texture);	
+		printf("%s, texture not found\n", texture);
 		return (0);
 	}
 	free(tmp_free);

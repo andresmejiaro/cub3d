@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 12:49:24 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/13 16:47:13 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/14 03:42:37 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	get_textures(t_global *vars, int fd)
 {
 	char	*line;
-	t_image *tmp;
+	t_image	*tmp;
 	
 	line = get_next_line(fd);
 	if (line[0] == '\n')
@@ -25,23 +25,23 @@ void	get_textures(t_global *vars, int fd)
 	tmp = (t_image *)malloc(sizeof(t_image));
 	tmp->file = ft_strtrim((line + 3), "\n");
 	tmp->img = mlx_xpm_file_to_image(vars->mlx, tmp->file, &tmp->width, &tmp->height);
-	tmp->addr = mlx_get_data_addr(tmp->img, &tmp->bits_per_pixel, &tmp->line_length, &tmp->endian);
-	vars->NO_texture = tmp;
+	// tmp->addr = mlx_get_data_addr(tmp->img, &tmp->bits_per_pixel, &tmp->line_length, &tmp->endian);
+	vars->no_texture = tmp;
 	line = get_next_line(fd);
 	tmp->file = ft_strtrim((line + 3), "\n");
 	tmp->img = mlx_xpm_file_to_image(vars->mlx, tmp->file, &tmp->width, &tmp->height);
-	tmp->addr = mlx_get_data_addr(tmp->img, &tmp->bits_per_pixel, &tmp->line_length, &tmp->endian);
-	vars->SO_texture = tmp;
+	// tmp->addr = mlx_get_data_addr(tmp->img, &tmp->bits_per_pixel, &tmp->line_length, &tmp->endian);
+	vars->so_texture = tmp;
 	line = get_next_line(fd);
 	tmp->file = ft_strtrim((line + 3), "\n");
 	tmp->img = mlx_xpm_file_to_image(vars->mlx, tmp->file, &tmp->width, &tmp->height);
-	tmp->addr = mlx_get_data_addr(tmp->img, &tmp->bits_per_pixel, &tmp->line_length, &tmp->endian);
-	vars->WE_texture = tmp;
+	// tmp->addr = mlx_get_data_addr(tmp->img, &tmp->bits_per_pixel, &tmp->line_length, &tmp->endian);
+	vars->we_texture = tmp;
 	line = get_next_line(fd);
 	tmp->file = ft_strtrim((line + 3), "\n");
 	tmp->img = mlx_xpm_file_to_image(vars->mlx, tmp->file, &tmp->width, &tmp->height);
-	tmp->addr = mlx_get_data_addr(tmp->img, &tmp->bits_per_pixel, &tmp->line_length, &tmp->endian);
-	vars->EA_texture = tmp;
+	// tmp->addr = mlx_get_data_addr(tmp->img, &tmp->bits_per_pixel, &tmp->line_length, &tmp->endian);
+	vars->ea_texture = tmp;
 }
 
 void	get_colors(t_global *vars, int fd)
@@ -64,14 +64,29 @@ void	get_colors(t_global *vars, int fd)
 	vars->ceiling_color[2] = ft_atoi(colors[2]);
 }
 
+void	put_ones_on_str(char *str, size_t len)
+{
+	size_t	i;
+
+	i = -1;
+	while (++i < len)
+	{
+		if (str[i] == ' ' || (str[i] != '0' && str[i] != 'N' && str[i] != 'S'
+				&& str[i] != 'E' && str[i] != 'W'))
+			str[i] = '1';
+	}
+	str[i] = '\0';
+}
+
 void get_map_to_matrix(t_global *vars, size_t biggest_line_len, int rows, char *file)
 {
-	int	i;
-	int	fd;
-	char *line;
+	int		i;
+	int		x;
+	int		fd;
+	char	*line;
 
 	vars->map_rows = rows;
-	vars->map_columns = (int)biggest_line_len; 
+	vars->map_columns = (int)biggest_line_len;
 	vars->map = (char **)malloc(sizeof(char *) * (rows + 1));
 	fd = open(file, O_RDONLY);
 	i = 0;
@@ -85,8 +100,11 @@ void get_map_to_matrix(t_global *vars, size_t biggest_line_len, int rows, char *
 		if (line == NULL)
 			break ;
 		vars->map[i] = (char *)malloc(sizeof(char) * biggest_line_len + 1);
-		ft_bzero(vars->map[i], biggest_line_len + 1);
-		vars->map[i] = ft_strtrim(line, "\n");
+		line = ft_strtrim(line, "\n");
+		x = -1;
+		while (line[++x] && line[x] != '\n')
+			vars->map[i][x] = line[x];
+		put_ones_on_str(vars->map[i], biggest_line_len);
 		i++;
 	}
 	vars->map[rows] = NULL;
@@ -109,12 +127,15 @@ void	get_map(t_global *vars, char *file)
 	while (line)
 	{
 		line = get_next_line(fd);
+		line = ft_strtrim(line, "\n");
 		if (ft_strlen(line) > biggest_line_len)
 			biggest_line_len = ft_strlen(line);
 		if (line != NULL)
+		{	
+			free(line);
 			i++;
+		}
 	}
 	close(fd);
 	get_map_to_matrix(vars, biggest_line_len, i, file);
 }
-

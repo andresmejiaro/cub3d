@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_positions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 13:57:38 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/13 16:32:04 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/14 03:42:55 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int	*where_is_p(char **matrix)
 		x = 0;
 		while (matrix[y][x])
 		{
-			if (matrix[y][x] == 'N' || matrix[y][x] == 'E' || matrix[y][x] == 'S' || matrix[y][x] == 'W')
+			if (matrix[y][x] == 'N' || matrix[y][x] == 'E'
+					|| matrix[y][x] == 'S' || matrix[y][x] == 'W')
 			{
 				p_pos[0] = y;
 				p_pos[1] = x;
@@ -44,7 +45,7 @@ int	*where_is_p(char **matrix)
 
 void	put_facing(t_global *vars, char c)
 {
-	if (c == 'N')	
+	if (c == 'N')
 	{	
 		vars->char_facing.y = -1;
 		vars->char_facing.x = 0;
