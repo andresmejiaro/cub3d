@@ -6,7 +6,7 @@
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 20:55:16 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/10 21:05:20 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/14 03:41:30 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	check_extention(char *file)
 	int	len;
 
 	len = ft_strlen(file);
-	if (file[len - 1] != 'b' || file[len - 2] != 'u' || file[len - 3] != 'c' || file[len - 4] != '.')
+	if (file[len - 1] != 'b' || file[len - 2] != 'u'
+		|| file[len - 3] != 'c' || file[len - 4] != '.')
 	{
 		printf("Invalid extension\n");
 		return (0);

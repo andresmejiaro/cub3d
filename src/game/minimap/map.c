@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_view.c                                        :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/12 14:09:15 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/12 17:00:48 by mpizzolo         ###   ########.fr       */
+/*   Created: 2023/06/11 17:05:21 by mpizzolo          #+#    #+#             */
+/*   Updated: 2023/06/14 03:19:41 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../../../cub.h"
 
-void move_view(int view_to, t_global *vars)
+int	put_map(t_global *vars)
 {
+	t_image	m_map;
 
-	if (view_to == 2)
-		rotate_vector(vars->char_facing, PI/8);
-	else if (view_to == 1)	
-		rotate_vector(vars->char_facing, -PI/8);
-	put_minimap(vars);
+	m_map.img = mlx_new_image(vars->mlx, vars->map_columns * 10,
+			vars->map_rows * 10);
+	m_map.addr = mlx_get_data_addr(m_map.img, &m_map.bits_per_pixel,
+			&m_map.line_length, &m_map.endian);
+	scale_map(vars, &m_map, vars->map_columns);
+	mlx_put_image_to_window(vars->mlx, vars->win, m_map.img, 0, 0);
+	return (1);
 }

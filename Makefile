@@ -4,50 +4,56 @@ NAME_DEBUG = cub_debug
 SRCS_DIR = ./src
 GNL_DIR = ./gnl
 
-SRCS = $(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c \
-		$(SRCS_DIR)/parser/check_args.c $(SRCS_DIR)/parser/check_map.c $(SRCS_DIR)/parser/get_positions.c $(SRCS_DIR)/parser/get_map.c \
-		$(SRCS_DIR)/main.c $(SRCS_DIR)/game/start_map.c $(SRCS_DIR)/game/key_hooks.c $(SRCS_DIR)/game/mlx_utils.c $(SRCS_DIR)/game/background.c \
-		$(SRCS_DIR)/game/minimap.c $(SRCS_DIR)/game/render_walls.c $(SRCS_DIR)/game/move_player.c $(SRCS_DIR)/game/move_view.c \
-    $(SRCS_DIR)/vector_math/distances.c $(SRCS_DIR)/vector_math/rotation.c
+MLX_FLAGS = -framework OpenGL -framework AppKit
+LIBFT_DIR = ./libft
+MLX_DIR = ./mlx
+
+SRCS = ./gnl/get_next_line.c ./gnl/get_next_line_utils.c \
+	$(SRCS_DIR)/parser/check_args.c $(SRCS_DIR)/parser/check_map.c $(SRCS_DIR)/parser/get_positions.c $(SRCS_DIR)/parser/get_map.c \
+	$(SRCS_DIR)/main.c $(SRCS_DIR)/game/start_map.c $(SRCS_DIR)/game/key_hooks.c $(SRCS_DIR)/game/mlx_utils.c $(SRCS_DIR)/game/background.c \
+	$(SRCS_DIR)/game/minimap/map.c $(SRCS_DIR)/game/minimap/minimap-utils.c $(SRCS_DIR)/game/render_walls.c $(SRCS_DIR)/game/moves_player.c \
+	$(SRCS_DIR)/vector_math/distances.c $(SRCS_DIR)/vector_math/distances_2.c $(SRCS_DIR)/vector_math/rotation.c
+
 
 OBJS = ${SRCS:.c=.o}
 
 CC = gcc
-CFLAGS = -Wall -Wextra -g3 -fsanitize=address #-Werror
+CFLAGS = #-Wall -Wextra -g3 #-fsanitize=address #-Werror
 #CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
 
-LIBFT_DIR = ./libft
-LIBFT = $(LIBFT_DIR)/libft.a
+MLX = $(MLX_DIR)/libmlx.a
 
-all: $(NAME)
+all: make_libft make_mlx $(NAME)
 
-debug: CFLAGS += -D DEBUG=1 
-debug: $(NAME_DEBUG) 
+make_libft:
+	make all -C $(LIBFT_DIR)
 
-VS_debug: CFLAGS += -D DEBUG=1
-VS_debug: $(NAME_DEBUG)
+make_mlx:
+	make all -C $(MLX_DIR)
 
-$(NAME_DEBUG): libft/libft.a $(SRCS)
-	$(CC) $(CFLAGS) -fdiagnostics-color=always -g $(SRCS) -Lmlx -lmlx \
-	-framework OpenGL -framework AppKit libft/libft.a -o $@
+debug: make_libft make_mlx $(NAME_DEBUG)
 
-$(LIBFT):
-	make -C $(LIBFT_DIR)
+VS_debug: make_libft make_mlx $(NAME_DEBUG)
 
-$(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) -lmlx -framework OpenGL -framework AppKit \
-	-L$(LIBFT_DIR) -lft -o $(NAME)
+$(NAME_DEBUG): $(LIBFT_DIR)/libft.a $(SRCS) $(MLX)
+	$(CC) $(CFLAGS) $(SRCS) -L$(MLX_DIR) -lmlx $(MLX_FLAGS) $(LIBFT_DIR)/libft.a -o $@
 
+$(NAME): $(OBJS) $(LIBFT_DIR)/libft.a $(MLX)
+	$(CC) $(CFLAGS) $(OBJS) -I$(LIBFT_DIR) -I$(MLX_DIR) $(LIBFT_DIR)/libft.a $(MLX) $(MLX_FLAGS) -o $(NAME)
+	
 %.o: %.c ./libft/libft.h
-	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(MLX_DIR) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
 	make clean -C $(LIBFT_DIR)
+	make clean -C $(MLX_DIR)
 
 fclean: clean
-	rm -f $(NAME) $(NAME_DEBUG) 
+	rm -f $(NAME)
+	rm -f $(NAME_DEBUG)
 	make fclean -C $(LIBFT_DIR)
+	make clean -C $(MLX_DIR)
 
 re: fclean all
 

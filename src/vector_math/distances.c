@@ -3,88 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   distances.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 18:10:27 by amejia            #+#    #+#             */
-/*   Updated: 2023/06/12 00:36:51 by amejia           ###   ########.fr       */
+/*   Updated: 2023/06/14 03:44:41 by mpizzolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub.h"
 
-float dot_prod(float v1[2], float v2[2])
+float	dot_prod(t_vect v1, t_vect v2)
 {
-	return (v1[0]*v2[0] + v1[1]*v2[1]);
+	return (v1.x * v2.x + v1.y * v2.y);
 }
 
-
-float dist_vec(float v1[2], float v2[2])
+// float dist_vec(t_vect v1[2], t_vect v2[2])
+float	dist_vec(t_vect v1, t_vect v2)
 {
-	float v3[2];
-	
-	v3[0] = v1[0] -v2[0];
-	v3[1] = v1[1] -v2[1];
-	return (sqrtf(dot_prod(v3,v3)));
+	float	res;
+	t_vect	temp;
+
+	temp = sub_v(v2, v1);
+	res = sqrtf(dot_prod(temp, temp));
+	return (res);
 }
 
-
-void norm_vect(float *v1)
+float	size_vect(t_vect v)
 {
-	float size;
-	float zerov[2];
+	t_vect	zero;
 
-	ft_bzero(zerov,2 * sizeof(float));
-	size = dist_vec(v1,zerov);
-	v1[0] = v1[0]/size;
-	v1[1] = v1[1]/size;
+	zero.x = 0;
+	zero.y = 0;
+	return (dist_vec(v, zero));
 }
 
-// This function mallocs its result
-float *nearest_point(float orig1[2], float orig2[2], float dir2[2])
+t_vect	norm_vect(t_vect v1)
 {
-	float *segment;
-	float proy;
-
-	segment = ft_calloc(2 , sizeof(float));
-	segment[0] = orig2[0] - orig1[0]; 
-	segment[1] = orig2[1] - orig1[1]; 
-	norm_vect(dir2); 
-	proy = dot_prod(dir2, segment);
-	segment[0] = proy * dir2[0];
-	segment[1] = proy * dir2[1];
-	segment[0] = segment[0] + orig1[0];
-	segment[1] = segment[1] + orig1[1];
-	return (segment);	
+	return (f_x_v(1 / size_vect(v1), v1));
 }
 
-// This function mallocs its result
-float *inter_lines(float orig1[2], float dir1[2], float orig2[2], float dir2[2])
+t_vect	nearest_point(t_vect point, t_vect origin, t_vect director)
 {
-	float *segment;
-	float slope[2];
-	
-	slope[0]=dir1[1]/dir1[0];
-	slope[1]=dir2[1]/dir2[0];
-	if ((dir1[0] == 0 && dir2[0] == 0) || fabs(slope[0] - slope[1]) < 0.1)
-		return (NULL);
-	segment = ft_calloc(2 , sizeof(float));
-	if (dir1[0] == 0)
-	{
-		segment[0] = orig1[0];
-		segment[1] = slope[1]*(segment[0] - orig2[0])+ orig2[1];
-	}
-	else if (dir2[0] == 0)
-	{
-		segment[0] = orig2[0];
-		segment[1] = slope[0]*(segment[0] - orig1[0])+ orig1[1];
-	}
-	else
-	{
-		segment[1] = ((-slope[0] / slope[1]) * orig2[1] + slope[1] * orig2[0] + orig1[1]
-			- slope[0] * orig1[0]) / (1 - slope[0] / slope[1]);
-		segment[0] = (segment[1] - orig1[1])/slope[0] + orig1[0];
-	}
-	return (segment);	
+	t_vect	segment;
+	float	proy;
+
+	segment = sub_v(origin, point);
+	director = norm_vect(director);
+	proy = dot_prod(director, segment);
+	segment = f_x_v(proy, director);
+	segment = add_v(segment, point);
+	return (segment);
 }
-
-
