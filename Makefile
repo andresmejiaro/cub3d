@@ -18,7 +18,7 @@ SRCS = ./gnl/get_next_line.c ./gnl/get_next_line_utils.c \
 OBJS = ${SRCS:.c=.o}
 
 CC = gcc
-CFLAGS = #-Wall -Wextra -g3 #-fsanitize=address #-Werror
+CFLAGS = -g #-fsanitize=address#-Wall -Wextra -g3 # #-Werror
 #CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
 
 MLX = $(MLX_DIR)/libmlx.a

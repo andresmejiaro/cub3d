@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   distances_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpizzolo <mpizzolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amejia <amejia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 03:44:48 by mpizzolo          #+#    #+#             */
-/*   Updated: 2023/06/14 03:46:47 by mpizzolo         ###   ########.fr       */
+/*   Updated: 2023/06/15 21:12:06 by amejia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ t_vect	inter_lines(t_vect orig1, t_vect dir1, t_vect orig2, t_vect dir2)
 		segment.x = orig2.x;
 		segment.y = slope[0] * (segment.x - orig1.x) + orig1.y;
 	}
+	else if (slope [1] == 0)
+	{
+		segment.y = orig2.y;
+		segment.x = (1 /slope[0])*(segment.y - orig1.y) + orig1.x;
+	}
 	else
 	{
 		segment.y = ((-slope[0] / slope[1]) * orig2.y + slope[1] * orig2.x
@@ -48,3 +53,19 @@ t_vect	inter_lines(t_vect orig1, t_vect dir1, t_vect orig2, t_vect dir2)
 	}
 	return (segment);
 }
+
+float	vec_angle(t_vect base, t_vect other)
+{
+	float theta;
+	float dotp;
+	float det;
+
+	dotp = dot_prod(base,other);
+	theta = acosf(dotp/size_vect(base)/size_vect(other));
+	det = base.x * other.y - base.y * other.x;
+	if (det < 0)
+		theta =  -theta;
+	return(theta);
+}
+
+

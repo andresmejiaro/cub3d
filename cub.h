@@ -14,7 +14,8 @@
 # define KH_RK 124
 # define KH_SPACE 49
 # define FOV 3.141592653589793238/4
-# define STEP_S 0.02
+# define SIZEC 300
+# define D_TO_SCREEN 2317.64502 // SIZE_X /2 / tanf(FOV/2)
 
 # include "./gnl/get_next_line.h"
 # include "./libft/libft.h"
@@ -103,6 +104,7 @@ t_vect	neg_v(t_vect vec);
 t_vect	add_v(t_vect v1, t_vect v2);
 t_vect	sub_v(t_vect v1, t_vect v2);
 t_vect	f_x_v(float f, t_vect v);
+float	vec_angle(t_vect base, t_vect other);
 
 /* parser */
 int		check_args(int argc, char *file);
@@ -152,6 +154,8 @@ void	move_view(int view_to, t_global *vars);
 //void    render_wall_col(t_global *vars, t_wall_rend *p);
 void    render_wall_col(t_global *vars, int column, int size, int *position);
 void render_wall(t_global *vars,t_vect cor1, t_vect cor2, t_image *n_wall);
+t_vect calc_ray_intersect(t_global *vars, int hor_pix, int *x_y);
+void mega_wall_render(t_global *vars);
 
 
 #endif
