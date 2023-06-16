@@ -84,35 +84,3 @@ int	key_released(int keycode, t_global *vars)
 		vars->keys->k_space = 0;
 	return (0);
 }
-
-int	game_loop(void *param)
-{
-	t_global	*vars;
-
-	vars = (t_global *)param;
-	key_actions(vars);
-	mouse_move(vars);
-	// crear una imagen del tamaño de la pantalla, dibubjar el background y el mega wall render en la misma, al final push image to window
-	
-	background(vars);
-	
-	//inicio pruebas
-
-	// t_vect inicial;
-	// t_vect final;
-
-	// inicial = set_vect(1,1);
-	// final = set_vect (2,1);
-	// render_wall(vars, inicial, final, vars->no_texture);
-	mega_wall_render(vars);
-
-	// push la image con todo al window
-	//fin pruebas
-	
-	if (!put_map(vars))
-		return (0);
-	return (0);
-}
-	
-
-

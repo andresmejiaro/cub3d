@@ -88,6 +88,7 @@ typedef struct s_wall_rend{
 	int		column;
 	int		size;
 	int		position[2];
+	t_image *img_dst;
 	t_image	*n_wall;
 }	t_wall_rend;
 
@@ -125,7 +126,7 @@ void	my_mlx_pixel_put(t_image *data, int x, int y, int color);
 int		create_trgb(int t, int r, int g, int b);
 
 /* background */
-void	background(t_global *vars);
+void	draw_background(t_global *vars, t_image *img);
 
 /* minimap */
 int		put_minimap(t_global *vars);
@@ -151,11 +152,11 @@ void	move_player(int move_to, t_global *vars);
 void	move_view(int view_to, t_global *vars);
 
 /* render walls */
-//void    render_wall_col(t_global *vars, t_wall_rend *p);
-void    render_wall_col(t_global *vars, int column, int size, int *position);
-void render_wall(t_global *vars,t_vect cor1, t_vect cor2, t_image *n_wall);
-t_vect calc_ray_intersect(t_global *vars, int hor_pix, int *x_y);
-void mega_wall_render(t_global *vars);
+void    render_wall_col(t_global *vars, int column, int size, int *position, 
+	t_image *img);
+void 	render_wall(t_global *vars,t_vect cor1, t_vect cor2, t_image *n_wall);
+t_vect	calc_ray_intersect(t_global *vars, int hor_pix, int *x_y);
+void	mega_wall_render(t_global *vars, t_image *img);
 
 
 #endif
