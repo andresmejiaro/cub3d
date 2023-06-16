@@ -152,11 +152,12 @@ void	move_player(int move_to, t_global *vars);
 void	move_view(int view_to, t_global *vars);
 
 /* render walls */
-void    render_wall_col(t_global *vars, int column, int size, int *position, 
-	t_image *img);
-void 	render_wall(t_global *vars,t_vect cor1, t_vect cor2, t_image *n_wall);
-t_vect	calc_ray_intersect(t_global *vars, int hor_pix, int *x_y);
+//void    render_wall_col(t_global *vars, int column, int size, int *position, 
+//	t_image *img);
+void	render_wall_col(t_global *vars, t_wall_rend *p);
 void	mega_wall_render(t_global *vars, t_image *img);
-
+void	render_wall_col_setup(t_global *vars, int *ct, t_image *img, 
+	t_vect intersect);
+t_vect	calc_ray_intersect(t_global *vars, int hor_pix, int *x_y);
 
 #endif
