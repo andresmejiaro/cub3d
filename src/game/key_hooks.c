@@ -84,16 +84,3 @@ int	key_released(int keycode, t_global *vars)
 		vars->keys->k_space = 0;
 	return (0);
 }
-
-int	game_loop(void *param)
-{
-	t_global	*vars;
-
-	vars = (t_global *)param;
-	key_actions(vars);
-	mouse_move(vars);
-	return (0);
-}
-	
-
-
